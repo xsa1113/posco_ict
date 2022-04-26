@@ -4,6 +4,7 @@ public class 실습1 {
 	public static void main(String[] args) {
 		// Integer.toBinaryString();
 		
+		System.out.println("ㅎㅇ");
 		// int는 32bit
 		// 원본 num을 2진수로 출력
 		Scanner sc = new Scanner(System.in);
