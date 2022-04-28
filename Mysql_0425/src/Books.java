@@ -19,16 +19,26 @@ public class Books {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver"); // mysql 드라이버 로딩
 			conn = DriverManager.getConnection(url, id, password);
-			String sql = "select * from books";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql); // sql 실행 객체
+			// 동적으로 실행할때 preparedstatement
+			// 정적으로 실행할때 Statement stmt 라는 객체를 만들고
+			// stmt.executeQuery(sql)로 실행
+			String sql = "select * from 고객 where 등급 = ? and 나이 > ?";
+//			stmt = conn.createStatement();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			// 처음 ? 에 silver 담기, 2째에 20 담기
+			pstmt.setString(1, "gold");
+			pstmt.setInt(2,20);
+
+			rs = pstmt.executeQuery(); // sql 실행 객체
 			while(rs.next()) {
-				int book_code = rs.getInt("book_code");
-				String title = rs.getString("title");
-				String author = rs.getString("author");
-				String year = rs.getString("year");
-				int price = rs.getInt("price");
-				System.out.println(book_code+"\t"+title+"\t"+author+"\t"+year+"\t"+price);
+				String book_code = rs.getString("고객아이디");
+				String title = rs.getString("고객이름");
+				String author = rs.getString("나이");
+				String year = rs.getString("등급");
+				String price = rs.getString("직업");
+				int point = rs.getInt("적립금");
+				System.out.println(book_code+"\t"+title+"\t"+author+"\t"+year+"\t"+price+"\t"+point);
 			}
 			}catch(Exception e) {
 				e.printStackTrace();
