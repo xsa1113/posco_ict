@@ -14,7 +14,7 @@ public class Books {
 		String password = "1234";
 		Connection conn = null; // database 연결하기 위한 conn 객체 생성, db에 접속
 		Statement stmt = null; //sql 명령어 실행하기 위한 객체
-		ResultSet rs =null; //결과셋 
+		ResultSet rs =null; //결과셋  
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver"); // mysql 드라이버 로딩
