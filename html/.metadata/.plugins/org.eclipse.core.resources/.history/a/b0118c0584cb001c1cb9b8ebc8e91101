@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body bgcolor="#00ff00">
+<!-- 
+	image 종류 
+ -->
+ 
+ <img alt = "이미지없음" src="./1.jpg">
+ 
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+font, div
+ -->
+ 
+ <font size="1" color="blue">font size : 1 color:blue</font>
+ <br>
+ <font size="2" color="#0000ff">font size : 2 color : ##0000ff</font>
+</body>
+</html>

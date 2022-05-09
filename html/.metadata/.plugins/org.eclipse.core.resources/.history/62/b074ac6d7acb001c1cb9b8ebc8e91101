@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+	<태그명 attribute="값" attribute2 = "값">문자열</태그명>
+	
+	<태그명 attribute="property:값">
+	property == 특성
+ -->
+ 
+ <h1 style="color: blue;">hello html</h1>
+ 
+ <h2 style="background-color: #FF0000">hello html</h2>
+
+</body>
+</html>

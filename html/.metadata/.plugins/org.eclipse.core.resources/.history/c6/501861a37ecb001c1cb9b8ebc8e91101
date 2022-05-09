@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+font, div
+ -->
+ 
+ <font size="1" color="blue">font size : 1 color:blue</font>
+ <br>
+ <font size="2" color="#0000ff">font size : 2 color : ##0000ff</font>
+ 
+ <pre>
+ <font size="6" color="red"></font>
+ 안녕하세요
+ 김태헌입니다
+ <!-- 
+ div : 태그자체만으로 의미가 없다 
+ 범위설정 및 한꺼번에 묶음
+ 
+  -->
+ </pre>
+ 
+ <div align = "center">
+ <font size="6"> font tag size6</font>
+<h3>h3 tag</h3>
+<p>p tag</p>
+ 
+ </div>
+ 
+ <div style ="border: solid; border-color: blue; margin-left : 20px" padding-top: 30px;
+ background-color:#00ff00">
+ 	<h1>제목 글입니다</h1>
+ 	<p>내요입니다</p>
+ </div>
+ 
+<span>hello html</span>
+ 
+  
+</body>
+</html>

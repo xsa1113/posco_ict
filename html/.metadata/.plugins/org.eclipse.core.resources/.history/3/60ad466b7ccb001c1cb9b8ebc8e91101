@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+tag 안에서 사용하는 tag
+
+<p>P tag</p>
+
+
+<p>P <b>tag</b></p>
+
+</body>
+</html>
