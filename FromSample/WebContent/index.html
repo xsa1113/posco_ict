@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	form : 전송(입력받은 데이터) ->tag
+			textfield, button, textarea, checkbox, radiobutton... 
+
+	<태그명 id=, class=, name=
+	목적 : javascript에서 접근 또는 데이터를 전송
+	id : 현재 페이지에서 한갬나이 유효
+	class : 다중으로 접근 또는 사용이 가능. CSS
+	name : 입력받은 값을 전달
+	
+ -->
+ 
+ <p id="pid" class="pcls" name="pname">hello</p>
+  <p id="demo" class="pcls" name="pname">hello</p>
+ 
+ <a href="moveHtml.html">movehtml.html로이동</a>
+ <br>
+ 
+ <!-- a태그 form 태그 둘다 이동인건 맞지만 form 내에서 사용할 수 있는 리소스들이 있다 이를 활용해서 알맞은 정보를 보내기 가능-->
+ <form action="moveHtml.html">
+ moveHtml.html로이동
+ <input type="submit" value="이동">
+ </form> 
+<br><br>
+
+<form action="loginAf.jsp">
+ID:<input type="text" name="id" value="" title="id를 기입해주세요" size="20" placeholder="id기입">
+<br>
+PW:<input type="password" name="pw"size="20">
+<br>
+<input type="submit" value="로그인">
+<input type="reset" value="초기화">
+
+</form>
+
+<!-- html5 -->
+number:<input type="number" max="5" min="1">
+<br>
+날짜: <input type="date">
+<br>
+<input type="datetime">
+<br>
+color:<input type="color">
+<br>
+range:<input type="range" max="10" min="0">
+<br>
+search:<input type="search">
+
+<br><br><br>
+
+ checkbox && radiobutton
+ <br>
+<input type="checkbox" value="패션">패션<br>
+<input type="checkbox" value="음악">음악<br>
+<input type="checkbox" value="게임">게임<br>
+<br>
+
+ name 으로 radio를 묶어준다 
+ <br>
+<input type="radio" name="car" value="벤츠">벤츠<br>
+<input type="radio" name="car" value="아우디">아우디<br>
+<input type="radio" name="car" value="bmw">bmw<br>
+<br><br>
+
+<textarea rows ="10" cols="30">초기값</textarea>
+
+<br><br>
+<!-- select  -->
+<select>
+	<option value="apple">사과</option>
+	<option value="pear">배</option>
+	<option value="grape">포도</option>
+	<option value="fuckking">잠온다</option>
+	
+</select>
+
+<form action = "moveValue.jsp">
+	<input type="checkbox" name ="hobby1" value="패션">패션<br>
+	<input type="checkbox" name ="hobby1" value="음악" checked= "checked">음악<br>
+	<input type="checkbox" name ="hobby1" value="게임">게임<br>
+	<input type="submit" value="moveValue로이동">
+
+</form>
+
+
+</body>
+</html>
