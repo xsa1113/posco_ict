@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--  -->
+
+<div>
+	<p>체육관 이용 요금</p>
+	
+	<p1>기본 사용료(2면,4시간) 40,800원</p1> <br>
+	<input type="checkbox" name="ex"  value=20000 onclick='getCheckboxValue()'/> 야간조명(20,000원) <br>
+	<input type="checkbox" name="ex"  value=4000 onclick='getCheckboxValue()'/> 배트 네트x2면(4,000원) <br>
+	<input type="checkbox" name="ex"  value=5000 onclick='getCheckboxValue()'/> 배구x10개(5,000원) <br>
+	
+	합계 금액
+	
+	<input type="text" id="result" value="40800" size="10">원 
+	
+	
+	<script type="text/javascript">
+		function getCheckboxValue(){
+			const query = 'input[name="ex"]:checked';
+			const selectedEls = document.querySelectorAll(query);
+			
+			let result = 40800;
+			selectedEls.forEach((el) =>{
+				result += parseInt(el.value);
+			});
+			
+			document.getElementById("result").value = result;
+		}
+	</script>
+
+</div>
+</body>
+</html>

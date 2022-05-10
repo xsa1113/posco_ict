@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+10진수 -> 2, 8, 16진수로 변경
+<br>
+10 진수 : <input type="text" id="num" size="20">
+<button type="button" onclick="btnClick()">변환</button>
+<br><br>
+결과 : <p id="result"></p>
+
+<script type="text/javascript">
+function btnClick(){
+	let str = document.getElementById("num").value;
+	let num = parseInt(str);
+	
+	let num2 = num.toString(2);
+	let num8 = num.toString(8);
+	let num16 = num.toString(16);
+	
+	let result = document.getElementById("result");
+	
+	let s = "2진수: " + num2 + "<br>"
+		+  "8진수: " + num8 + "<br>"
+		+ "16진수: " + num16 + "<br>"
+		
+	result.innerHTML = s;
+}
+</script>
+</body>
+</html>

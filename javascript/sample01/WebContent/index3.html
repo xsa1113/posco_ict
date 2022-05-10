@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id="demo"> P tag</p>
+
+<input type="text" id="name" value="123" size="20"> <!-- form tag -->
+
+<script type="text/javascript">
+
+let pvalue = document.getElementById("demo").innerHTML;
+console.log(pvalue);
+
+let invalue = document.getElementById("name").value;
+console.log(invalue);
+</script>
+
+<br><br>
+
+<input type="button" value="input버튼" onclick="alert('input버튼클릭!')">
+
+<input type="button" value="func버튼" onclick="btnClick()">
+
+<button type="button" onclick="btnClick()">func버튼_버튼</button>
+
+<button tpye="button" onclick="btnFunc()"> 버튼 </button>
+
+
+<script type="text/javascript">
+function btnClick(){
+	
+	alert("fucn버튼 click");
+	
+	let name = document.getElementById("name").value;
+	document.getElementById("demo").innerHTML = name;
+}
+
+function btnFunc(){
+	let num = document.getElementById("name").value;
+	
+	document.getElementById("demo").innerHTML = parseInt(num) * 2;
+}
+
+</script>
+
+</body>
+</html>

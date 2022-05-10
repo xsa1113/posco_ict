@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p><b>변수의 연산</b></p>
+
+
+<p> a, b에 대해서 변수 a와b의 계산 결과를 표시합니다.</p>
+
+
+<input type = "button" value="덧셈" onclick="btnPlus()"></button>
+<input type = "button"  value="뺄셈" onclick="btnMinus()"></button>
+<input type = "button" value="곱셈" onclick="btnSub()"></button>
+<input type = "button" value="나눗셈" onclick="btnPer()"></button>
+<input type = "button" value="나머지" onclick="btnNam()"></button>
+
+<br>
+
+num1 : <input type="text" id="num1" value="" size="10"> <br>
+num2 : <input type="text" id="num2" value="" size="10"> <br>
+결과 : <input type="text" id="result" size="10">
+
+
+<script type="text/javascript">
+function btnPlus(){
+	let num1 = document.getElementById("num1").value;
+	let num2 = document.getElementById("num2").value;
+	document.getElementById("result").value = parseInt(num1)+parseInt(num2);
+}
+
+function btnMinus(){
+	let num1 = document.getElementById("num1").value;
+	let num2 = document.getElementById("num2").value;
+	document.getElementById("result").value = parseInt(num1)-parseInt(num2);
+}
+
+function btnSub(){
+	let num1 = document.getElementById("num1").value;
+	let num2 = document.getElementById("num2").value;
+	document.getElementById("result").value = parseInt(num1)*parseInt(num2);
+}
+
+function btnPer(){
+	let num1 = document.getElementById("num1").value;
+	let num2 = document.getElementById("num2").value;
+	if(num2 == 0){
+		alert("계산할 수 없습니다.");
+		return;
+		
+	}
+	document.getElementById("result").value = parseInt(num1)/parseInt(num2);
+}
+
+function btnNam(){
+	let num1 = document.getElementById("num1").value;
+	let num2 = document.getElementById("num2").value;
+	if(num2 == 0){
+		alert("계산할 수 없습니다.");
+		return;
+		
+	}
+	document.getElementById("result").value = parseInt(num1)%parseInt(num2);
+}
+
+</script> 
+
+
+</body>
+</html>

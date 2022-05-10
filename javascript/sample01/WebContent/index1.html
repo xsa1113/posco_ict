@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+// internal
+/* function myfunc() {
+	var v = document.getElementById("demo").innerHTML;
+	console.log(v);
+} */
+</script>
+
+<!-- external js라는 폴더를 만들어서 외부에서 가져온다 -->
+<script type="text/javascript" src="./myJs.js"></script>
+
+</head>
+<body>
+
+<h3 id="demo">여기가 h3태그...</h3>
+
+<button type="button" onclick="myfunc()">버튼</button>
+
+<script type="text/javascript">
+/* inline방식 */
+/* function myfunc() {
+	var v = document.getElementById("demo").innerHTML;
+	console.log(v);
+} */
+
+</script>
+
+</body>
+</html>

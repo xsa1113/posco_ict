@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+/*  
+ * 
+ 	Integer, double, String, Character, boolean, Object, Array
+ 	
+ 	var let
+ 	
+ 	MyClass cls = new MyClass();
+ 			객체, object
+ 			instance(== 주체)
+ 			
+ 	
+ 
+ */
+ 
+ let cars = new Array(3);
+ 			cars[0] = "ssab";
+ 			cars[1] = "volvo";
+ 			cars[2] = "bmw";
+ 			
+ 			for( i=0; i<cars.length; i++){
+ 				console.log(cars[i]);
+ 			}
+ 			
+ 			for(i in cars){
+ 				console.log(cars[i]);
+ 			}
+ 			
+ 			// json(=데이터) (key:value) pair
+ 			let obj ={
+ 					firstname: "길동",
+ 					lastname : "홍",
+ 					age:24,
+ 					func:function(){
+ 						console.log("func()함수 호출");
+ 					}
+ 			};
+ 			
+ 			console.log(obj.firstname);
+ 			console.log(obj.age);
+ 			obj.func();
+ 			
+ 			class Person{
+ 				constructor(name, age){
+ 					this.name = name;
+ 					this.age =age;
+ 				}
+ 				funcName(){
+ 					console.log("Person funcName()")
+ 				}
+ 			}
+ 			
+ 			let p = new Person("홍길동", 24)
+ 			console.log(p.name);
+ 			console.log(p.age);
+ 			p.funcName();
+ 			
+</script>
+
+</body>
+</html>
