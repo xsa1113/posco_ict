@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<strong>라면 타이머</strong>
+<br><br>
+
+<form name = "frm">
+
+<select id="sel">
+	<option value ="180">원하는 시간을 선택해 주십시오(기본 시간 3분)</option>
+	<option value="300">5분</option>
+	<option value="180">3분</option>
+	<option value="120">2분</option>
+	<option value="60">1분</option>
+	<option value="30">30초</option>
+</select>
+
+</form>
+
+<input type="button" value="time start" onclick="noodle()">
+<br><br>
+
+<span id="countdown">time selected</span>
+<br><br>
+
+<button type="button" onclick="window.close()">close</button>
+
+
+<script type="text/javascript">
+let index = 0; // select 변수
+let value = 0;
+let time = 0; 
+
+/* 접근방법  */
+function noodle(){
+	clearInterval(time); // 초기화
+	//value = document.getElementById('sel').value;
+	index = document.frm.sel.selectedIndex;
+	//value = document.frm.sel.value;
+	//alert(value);
+	
+	value = document.frm.sel.options[index].value;
+	alert(value);
+	//time = setInterval("noodleTimer()", 1000);
+}
+
+function noodleTimer(){
+	value = value-1;
+	
+	document.getElementById('countdown').innerHTML = '완료까지<b>' + value + "</b>초 남았습니다";
+	
+	if(value == 0){
+		alert('완료되었습니다');
+	}
+}
+
+</script>
+</body>
+</html>

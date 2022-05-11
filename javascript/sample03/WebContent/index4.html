@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<script type="text/javascript">
+function nowTime(){
+	
+	let now = new Date();
+	let hour = now.getHours();
+	let minute = now.getMinutes();
+	let second = now.getSeconds();
+	
+	if(hour<10){
+		hour = "0" + hour;
+	}
+	if(minute<10){
+		minute = "0" + minute;
+	}
+	if(second<10){
+		second = "0" + second;
+	}
+	
+	
+	let p = document.getElementById("demo");
+	p.innerHTML = hour + " : " + minute + " : " + second;
+}
+
+setInterval("nowTime()",1000);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div id="demo" style="background-color: #ffffff"> Hello JS CSSS</div>
+
+<button type="button" onclick="btnClick()">적용</button>
+
+<!-- 버튼은 자바스크립트로도 접근이 가능하다  -->
+<script type="text/javascript">
+
+function btnClick() {
+	let obj = document.getElementById("demo");
+	
+	obj.style.backgroundColor = "#0000ff";
+	obj.style.color = "white";
+	obj.style.textAlign = 'center';
+	obj.style.borderStyle = 'double';
+	obj.style.fontFamily = "MS PGothic";
+	obj.style.fontSize = '24pt';
+}
+</script>
+
+</body>
+</html>
