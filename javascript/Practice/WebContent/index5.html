@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>다음 생일까지 남은 일수 </h1>
+<br>
+<p>다음 버튼을 클릭하여 생일을 입력하면, <br> 다음 생일까지 남은 일수를 볼 수 있습니다.</p>
+<br>
+
+<button type ="button" id="bir" onclick=func()>생일을 입력</button>
+
+<script type="text/javascript">
+function func(){
+	var month = prompt('월을 입력하세요','');
+	if(month == ''){
+		alert("다시 입력해주세요");
+	}
+	
+	var day = prompt('날짜를 입력하세요', '');
+	if(day == ''){
+		alert("다시 입력해주세요");
+	}
+	
+	var nowday = new Date();
+	var birth = new Date(month+"/"+day+"/"+nowday.getFullYear());// 생일 날짜 
+	
+	birth.setDate(day);
+	
+	console.log(birth.getTime());
+	console.log(nowday.getTime());
+	var monthSec = birth.getTime() - nowday.getTime();
+	
+	if(monthSec <= 0){
+		birth.setFullYear(nowday.getFullYear() + 1);
+		monthSec = birth.getTime() - nowday.getTime();
+	}
+	
+	var days = monthSec/(24*60*60*1000)
+	days= Math.ceil(days);
+	
+	alert("다음생일까지 " + days+ "일 남았습니다");
+	
+	
+	
+}
+	
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<!-- 
+	xml 접근방법
+ -->
+<script type="text/javascript">
+let xmltext = "<bookstore>" + 
+					"<book>" +
+						"<title>탈무드</title>" + 
+							"<author>man</author>" +
+								"<year>2001</year>" +
+					"</book>" + 
+					"<book>" +
+						"<title>이솝이야기</title>" + 
+							"<author>woman</author>" +
+								"<year>2004</year>" +
+					"</book>" + 
+				"</bookstore>";
+let parser, xmlDoc;
+
+// 지금 위쪽에 있는 데이터를 실제 xml파일로 변경하기 위함  
+parser = new DOMParser();
+
+//String -> xml로 변경
+xmlDoc = parser.parseFromString(xmltext,"text/html");
+alert(xmlDoc);
+
+document.getElementById("demo").innerHTML
+//tagname을 통해서 book을 접근하고 자식노드의0번째 이름을 얻어온다.
+	//= xmlDoc.getElementsByTagName("book")[0].childNodes[0].nodeName;
+	
+//= xmlDoc.getElementsByTagName("book")[0].childNodes[0].childNodes[0].nodeValue;
+	
+	//노드가 몇개인지 확인 가능
+	//= xmlDoc.getElementsByTagName("book").length;
+	
+	// dom을 기본적으로 알고있고, 자식노드를 통해서 접근이 가능
+	= xmlDoc.getElementsByTagName("book")[0].childNodes[0].length;	
+	
+</script>
+</body>
+</html>

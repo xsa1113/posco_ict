@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+	XML - eXtensible Mark up Language
+	데이터용, 셋업용
+	
+	목적 : Data(공공)를 공유하기 위해서 설정을 하기 위한 파일 
+	
+	tag들로 구성되어있다.
+	
+
+ -->
+ 
+ <p id="demo"> p tag</p>
+ 
+ <button type="button" onclick="loadXMLDoc()">내용보기</button>
+ <script type="text/javascript">
+ let xhttp = new XMLHttpRequest();
+ 
+ function loadXMLDoc(){
+	 xhttp.onreadystatechange = function(){
+		 //console.log(this.responseText); //response : 응답 
+		 //console.log(this.status); //상태 : 404,500,200
+		 //console.log(this.readyState); // 0 1 2 3 4 
+		 
+		 if(this.status == 200 && this.readyState == 4){
+			 document.getElementById("demo").innerHTML = this.responseText;
+		 }
+	 }
+	 xhttp.open("GET","test.txt",true);
+	 console.log("http.open()");
+	 
+	 xhttp.send();
+	 console.log("http.send()");
+ }
+ /* 
+ 	readyState : 진행상태
+ 	0 -> open 메소드를 수행하기 전 상태
+ 	1 -> loading 중 .. 
+ 	2 -> loading 완료 .. 
+ 	
+ 	status
+ 	200 -> success
+ 	403 -> 접근금지
+ 	404 -> (파일, 클래스)없음
+ 	500 -> 구문에러
+ 
+ */
+ 
+ 
+ 
+ </script>
+ 
+</body>
+</html>

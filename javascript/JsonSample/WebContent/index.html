@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!--  
+	JSON : Java Script Object Notation
+		표기법
+		
+		한쌍(pair) key: value == HashMap
+		
+
+
+-->
+
+<p id="demo"></p>
+
+<script type="text/javascript">
+let jsonData = [
+	{
+		"name" : "홍길동",
+		"age" : 24
+	},
+	{
+		"name" : "성춘향",
+		"age" : 16
+	},
+	{
+		"name" : "을지매",
+		"age" : 12
+	},
+];
+
+/* 
+	jsonData 인스턴스를 통해서 alert를찍으면 
+	object Object로 인식 즉, 객체로 인식한다
+*/
+//alert(JSON.stringify(jsonData));
+
+document.getElementById("demo").innerHTML = jsonData[2].name + " " + jsonData[2].age;
+
+let arrText = '{"name" : "홍길동", "age" : 24, "name" : "성춘향","age" : 16}';
+
+let json = JSON.parse(arrText); // string -> json으로 변환 작업 JSON.parse
+alert(json.name);
+
+let str = JSON.stringify(json); // json -> string 으로 변환
+alert(str);
+</script>
+
+
+</body>
+</html>

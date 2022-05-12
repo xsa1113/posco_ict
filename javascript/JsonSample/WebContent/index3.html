@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+ <h1>책목록</h1>
+ <table border ="1" id="mytable">
+ 
+ <tr>
+ 	<th>번호</th>
+ 	<th>제목</th>
+ 	<th>저자</th>
+ 	<th>가격</th>
+ 	<th>발행일</th>
+ 
+ </tr>
+ </table>
+ 
+ <script type="text/javascript">
+ 
+ let xhttp = new XMLHttpRequest();
+ 
+ xhttp.onreadystatechange = function(){
+	 if(xhttp.readyState == 4 && xhttp.status == 200){
+			jsonParse(this.responseText);
+		}
+ }
+ 
+ xhttp.open("GET","Books.json", true);
+ xhttp.send();
+ 
+ function jsonParse(resp){
+	 
+	 	let txt_title, txt_name, txt_author, txt_des;
+		
+		txt_title = txt_name = txt_author = txt_des = "";
+		
+		
+		let arrtitle = new Array();
+		let arrname = new Array();
+		let arrauthor = new Array();
+		let arrdes = new Array();
+		
+		
+		let txt = "";
+		
+		let json = JSON.parse(resp);
+		
+		alert(json.length);
+		
+		for(var i=0; i<json.length; i++){
+			
+			arrtitle[i] = json[i].title ;
+			arrname[i] = json[i].author ;
+			arrauthor[i] = json[i].price ;
+			arrdes[i] = json[i].pub ;
+			
+		}
+		
+		let table = document.getElementById("mytable");
+		
+		for(var i=0; i<json.length; i++){
+			let tr = document.createElement("tr");
+			
+			let th = document.createElement("th");
+			th.appendChild(document.createTextNode((1+i)+ ""));
+			
+			let td1 = document.createElement("td");
+			td1.appendChild(document.createTextNode(arrtitle[i] + ""));
+			
+			let td2 = document.createElement("td");
+			td2.appendChild(document.createTextNode(arrname[i] + ""));
+			
+			let td3 = document.createElement("td");
+			td3.appendChild(document.createTextNode(arrauthor[i] + ""));
+			
+			let td4 = document.createElement("td");
+			td4.appendChild(document.createTextNode(arrdes[i] + ""));
+			
+			tr.appendChild(th);
+			tr.appendChild(td1);
+			tr.appendChild(td2);
+			tr.appendChild(td3);
+			tr.appendChild(td4);
+			
+			table.appendChild(tr);
+			
+			
+		}
+	}
+ 
+ 
+ </script>
+
+</body>
+</html>

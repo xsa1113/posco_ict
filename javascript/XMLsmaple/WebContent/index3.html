@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id = "demo"></p>
+
+<script type="text/javascript">
+
+let xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function(){
+	if(this.readyState == 4 && this.status == 200){
+		
+	}
+}
+
+xhttp.open("GET","",true);
+xhttp.send();
+
+
+function nodeValue(){
+	let num, name;
+	let txt, numtxt, xmlDoc;
+	
+	txt = numtxt = "";
+	
+	xmlDoc = xml.responseXML;
+	console.log(xmlDoc);
+	
+	name = xmlDoc.getElementsByTagName("NAME_ENG");
+	
+}
+
+
+</script>
+
+
+</body>
+</html>

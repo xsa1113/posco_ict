@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!--
+	DOM : Document Object Model 
+		각 tag를 접근하기 위한 object
+		그 object를 접근하기 위한 함수들
+
+		
+  -->
+  
+ <!-- childNodes  -->
+<h3 id="intro">h3 id intro 입니다</h3>
+
+<button type="button" onclick="func()">버튼</button>
+
+<script type="text/javascript">
+function func(){
+	let text = document.getElementById("intro").childNodes[0].nodeValue;
+	alert(text);
+}
+</script>
+<br><br>
+
+<select id="cars">
+	<option>benz</option>
+	<option>bmw</option>
+	<option>volvo</option>
+
+</select>
+
+<button type="button" onclick="carfunc()">선택</button>
+
+<script type="text/javascript">
+function carfunc(){
+	let carname = document.getElementById("cars").childNodes;
+	alert(carname[1].text);
+}
+</script>
+<br><br>
+
+<!-- appendChild(뒤), insertChild(앞) -->
+<div id = "div1">
+	<p id="p1"> 첫번째 p태그</p>
+	<p id="p2"> 두번째 p태그</p>
+</div>
+
+<button type="button" onclick="append()">뒤에 추가</button>
+<button type="button" onclick="insert()">앞에 추가</button>
+<button type="button" onclick="deletef()">삭제</button>
+
+<script type="text/javascript">
+function append(){
+	let ptag = document.createElement('p'); //<p></p>
+	let textNode = document.createTextNode("새로운 p 태그");
+	// id추가
+	ptag.id = 'p0';
+	// class추가
+	ptag.className = 'pcls';
+	
+	ptag.appendChild(textNode); // <p id='p0' class='pcls'>새로운 p 태그</p>
+	
+	// 어디에 추가할 것인지?
+	let element = document.getElementById('div1');
+	
+	element.appendChild(ptag);
+	
+	tagcount ++;
+	
+}
+function insert(){
+	let h3tag = document.createElement('h3');
+	let textNode = document.createTextNode("h3 태그 추가");
+	
+	h3tag.appendChild(textNode);
+	
+	let element = document.getElementById("div1");
+	
+	let elementBefore = document.getElementById("p1"); // "id값" 요소 앞에 추가 
+	
+	element.insertBefore(h3tag, elementBefore);
+	
+}
+function deletef(){
+	let element = document.getElementById("div1");
+	let removeElement = document.getElementById("p2");
+	
+	element.removeChild(removeElement);
+	
+}
+</script>
+
+</body>
+</html>

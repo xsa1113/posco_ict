@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>2개의 주사위</h1> <br>
+<p>버튼을 클릭하면 2개의 주사위가 랜덤됩니다.</p>
+<br><br>
+<img alt="" src="./images/sai_1.gif" width="20" height="20" id="img1">
+<img alt="" src="./images/sai_6.gif" width="20" height="20" id="img2">
+<br><br>
+<input type="button" value="주사위를 굴린다" id="ran" onclick="Random()">
+<br><br>
+
+<script type="text/javascript">
+function Random(){
+	var len1 = Math.random() * 6;
+	var len2 = Math.random() * 6;
+	console.log(len1);
+	len1 = Math.ceil(len1);
+	console.log(len1);
+	len2 = Math.ceil(len2);
+	
+	document.getElementById("img1").src = './images/sai_'+len1+'.gif';
+	document.getElementById("img2").src = './images/sai_'+len2+'.gif';
+	//document.getElementById("img1").innerHTML = len1 + len2;
+	
+}
+
+
+</script>
+
+</body>
+</html>

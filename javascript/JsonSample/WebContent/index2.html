@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<script type="text/javascript">
+
+let xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function(){
+	if(xhttp.readyState == 4 && xhttp.status == 200){
+		jsonParse(this.responseText);
+	}
+}
+
+xhttp.open("GET","NBAjson.json", true);
+xhttp.send();
+
+function jsonParse(resp){
+	//alert(resp);
+	
+	let json = JSON.parse(resp);
+	//alert(json);
+	
+	
+	document.getElementById("demo").innerHTML
+		//= json.quiz.sport.q1.question;
+		//= json.quiz["sport"].q1.question;
+		//= json.quiz["sport"].q1.options[1];
+		= json.quiz.maths.q1.options[2];
+		}
+
+</script>
+
+</body>
+</html>

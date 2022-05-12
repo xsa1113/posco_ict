@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+	본인이 읽은 책
+	제목,저자,가격,발행일
+	4권 -> xml파일 
+	데이터들을 읽고 시각화
+	Table
+	
+		제목 저자 가격 발행일
+	1	배꼽 오쏘 12000 2012.02.01
+ -->
+ <h1>책목록</h1>
+ <table border ="1" id="mytable">
+ 
+ <tr>
+ 	<th>번호</th>
+ 	<th>제목</th>
+ 	<th>저자</th>
+ 	 	<th>가격</th>
+ 	 	 	<th>발행일</th>
+ 
+ </tr>
+ 
+ </table>
+ 
+ <script type="text/javascript">
+ let xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			nodeValueFunc(this);
+			//childNodeFunc(this);
+		}
+	}
+ 
+ xhttp.open("GET", "Books.xml", true);
+ xhttp.send();
+
+ 
+function nodeValueFunc(xml){
+	let title, name, author, des;
+	let txt_title, txt_name, txt_author, txt_des, xmlDoc;
+	
+	txt_title = txt_name = txt_author = txt_des = txt = numtxt = "";
+	
+	xmlDoc = xml.responseXML;
+	console.log(xmlDoc);
+	
+	let arrtitle = new Array();
+	let arrname = new Array();
+	let arrauthor = new Array();
+	let arrdes = new Array();
+	
+	
+	title = xmlDoc.getElementsByTagName("제목");
+	name = xmlDoc.getElementsByTagName("저자");
+	author = xmlDoc.getElementsByTagName("가격");
+	des = xmlDoc.getElementsByTagName("발행일");
+	
+	console.log(title.length);
+	
+	for(var i=0; i<title.length; i++){
+		
+		arrtitle[i] = title[i].childNodes[0].nodeValue ;
+		arrname[i] = name[i].childNodes[0].nodeValue ;
+		arrauthor[i] = author[i].childNodes[0].nodeValue ;
+		arrdes[i] = des[i].childNodes[0].nodeValue ;
+		
+	}
+	
+	console.log(txt_title.length);
+	
+	let table = document.getElementById("mytable");
+	
+	for(var i=0; i<title.length; i++){
+		let tr = document.createElement("tr");
+		
+		let th = document.createElement("th");
+		th.appendChild(document.createTextNode((1+i)+ ""));
+		
+		let td1 = document.createElement("td");
+		td1.appendChild(document.createTextNode(arrtitle[i] + ""));
+		
+		let td2 = document.createElement("td");
+		td2.appendChild(document.createTextNode(arrname[i] + ""));
+		
+		let td3 = document.createElement("td");
+		td3.appendChild(document.createTextNode(arrauthor[i] + ""));
+		
+		let td4 = document.createElement("td");
+		td4.appendChild(document.createTextNode(arrdes[i] + ""));
+		
+		tr.appendChild(th);
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		tr.appendChild(td4);
+		
+		table.appendChild(tr);
+		
+		
+	}
+	
+}
+
+
+ 
+ </script>
+
+</body>
+</html>
