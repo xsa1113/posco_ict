@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>수영시합</h1>
+
+<button type="button" id="woman">여성부</button>
+<button type="button" id="man">남성부</button>
+
+<br><br>
+
+<table border = "1">
+<tr>
+	<th>title</th>
+		<th>name</th>
+			<th>time</th>
+				
+</tr>
+
+<tr>
+	<th>우승</th>
+	<td></td>
+	<td></td>
+</tr>
+
+<tr>
+	<th>2위</th>
+	<td></td>
+	<td></td>
+</tr>
+
+<tr>
+	<th>3위</th>
+	<td></td>
+	<td></td>
+</tr>
+
+
+</table>
+
+<script type="text/javascript">
+let woman = [
+	["",""],
+	["김태헌","01:06:11"],
+	["이하나","02:45:11"],
+	["박찬희","04:23:43"],
+];
+
+let man = [
+	["",""],
+	["홍길동","01:06:11"],
+	["박춘삼","02:12:11"],
+	["박정수","04:25:24"],
+];
+
+$(document).ready(function(){
+	//$("tr:eq(1) td:eq(0)").html("추가 데이터");
+	
+	$("#woman").click(function(){
+		for(var i = 0; i<4; i++){
+			for(var j=0; j<2; j++){
+				$("tr:eq("+ i + ") td:eq(" + j + ")").html(woman[i][j]);
+				
+			}
+		}
+	});
+	
+	$("#man").click(function(){
+		for(var i = 0; i<4; i++){
+			for(var j=0; j<2; j++){
+				$("tr:eq("+ i + ") td:eq(" + j + ")").html(man[i][j]);
+				
+			}
+		}
+	});
+})
+
+
+</script>
+</body>
+</html>

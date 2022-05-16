@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+
+<div id="div">
+
+</div>
+
+<button type="button" >태그추가</button>
+
+<script type="text/javascript">
+$("button").click(function(){
+	//text 추가
+	let txt = "<p>p tag</p>";
+	$("#div").append(txt);
+	//java script 추가
+	let js = document.createElement("h3");
+	js.innerHTML = "h3 tag";
+	$("#div").append(js);
+	//jQuery 추가
+	let jq = $("<p></p>").html("jquery p tag");
+	$("#div").append(jq);
+	
+});
+
+</script>
+</body>
+</html>

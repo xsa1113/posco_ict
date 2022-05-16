@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<body>
+
+<h1>동적 table</h1>
+
+<table border = "1" id="list_table">
+<colgroup>
+	<col style ="width : 30px">
+		<col style ="width : 200px">
+			<col style ="width : 300px">
+				<col style ="width : 200px">
+	
+</colgroup>
+
+<thead>
+<tr>
+	<th>No</th>
+	<th>Name</th>
+	<th>Birth</th>
+	<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>01</td>
+	<td>홍길둥</td>
+	<td>1824/12/12</td>
+	<td><a href="#" class="delete-link">삭제</a></td>
+</tr>
+</tbody>
+</table>
+
+<br><br>
+
+<!-- 입력 테이블  -->
+<table border = "1" id="append_table">
+<colgroup>
+	<col style="width : 100px">
+	<col style="width : 200px">
+	<col style="width : 300px">
+	<col style="width : 100px">
+</colgroup>
+
+<thead>
+<tr>
+	<th><label for="add_no" >No</label></th>
+	<th>Name</th>
+	<th>Birth</th>
+	<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td><input type="text" id="add_no"></td>
+	<td><input type="text" id="add_name"></td>
+	<td><input type="text" id="add_birth"></td>
+	<td><button type="button" id="append_row">회원추가</button></td>
+</tr>
+</tbody>
+
+</table>
+
+<script type="text/javascript">
+// append_row -> 회원추가 버튼을 클릭했을 때, 빈칸이 아닐때, 
+// 조건이 만족하면 삽입 3개의 td를 추가 
+$("#append_row").on("click", function(){
+	if($("#add_no").val() == ""){
+		alert("빈칸을 작성해 주십시오");
+	}else if($("#add_name").val() == ""){
+		alert("빈칸을 작성해 주십시오");
+	}else if($("#add_birth").val() == ""){
+		alert("빈칸을 작성해 주십시오");
+	}else{
+		
+		// id = list table에 추가 
+		$("#list_table").append(
+			$("<tr>").append(
+					$("<td>").append($("#add_no").val()),
+					$("<td>").append($("#add_name").val()),
+					$("<td>").append($("#add_birth").val()),
+					$("<td>").append(
+						$("<a>").prop("href","#").addClass('delete-link').append("삭제")
+						
+					)
+					
+			
+			)	
+		)
+
+	}
+});
+
+		$(".delete-link").on("click",function(){
+			$(this).parent().parent().remove();
+			// a	td		tr
+		});
+
+
+/* $("#list_table").on("click",'.delete-link',function(){
+	$(this).parent().parent().remove();
+	// a	td		tr
+}); */
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

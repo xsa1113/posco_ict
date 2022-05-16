@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+
+<!--  radio  -->
+<ul>
+	<li><input type="radio" name ="rbtn" value="apple">사과</li>
+	<li><input type="radio" name ="rbtn" value="pear">배</li>
+	<li><input type="radio" name ="rbtn" value="banana">바나나</li>
+	
+</ul>
+
+<button type="button" id ="choice">선택</button>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#chocie').click(function(){
+		//getter -> check했을 경우 input타입의 name이 rbtn인게 checked 됐을때 
+		let val = $('input[name="rbtn"]:checked').val();
+		alert(val);
+		
+		//setter
+		$('input[name="rbtn"]').val(["pear"]);
+	});
+});
+
+</script>
+
+<br><br>
+
+<input type="checkbox" id ="ch">그림그리기
+<br><br>
+<button type="button" id = "btn"> 첵크</button>
+
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function() {
+	
+		//getter
+		//let check = $("#ch").is(":checked");
+		let check = $("input:checkbox[id='ch']").is(":checked");
+		//alert(check);
+		
+		//setter
+		//$("#ch").attr("checked", "checked"); // 어트리뷰티 접근방법
+		$("#ch").prop("checkd",true) // 프로퍼티 접근방법
+	});
+	
+});
+
+</script>
+
+</body>
+</html>

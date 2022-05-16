@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<style type="text/css">
+.back{
+	color:#ffff00;
+	background-color: black;
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+<table border ="1">
+<col width="50"><col width="200"><col width="150">
+
+<tr>
+	<th>번호</th><th>이름</th><th>나이</th>
+</tr>
+
+<tr class = cls>
+	<th>1</th><td>홍길동</td><td>24</td>
+</tr>
+
+<tr class = cls>
+	<th>2</th><td>김태헌</td><td>28</td>
+</tr>
+
+<tr class = cls>
+	<th>3</th><td>이하나</td><td>24</td>
+</tr>
+</table>
+
+<p>p tag</p>
+
+<button type="button" id ="btn"> 버튼</button>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	/* $("tr.cls").mouseover(function() {
+		
+		$(this).css("background", "#ff0000");
+	});
+	$("tr.cls").mouseover(function() {
+		
+		$(this).css("background", "#fff");
+	}) */
+	
+	
+	// $().css로 css속성을 변경 가능하다
+	$("#btn").click(function(){
+		//setter
+		$("p").css("background", "#0000ff");
+		$("p").text("여기가 p태그입니다");
+		//getter
+		let color = $('p').css('background');
+		let text = $("p").text(); // string 형식
+		alert(color);
+		
+		// 속성(attribute) 추가
+		// attr("속성명", "값") -> 속성 값을 추가할수있다
+		//$("p").attr("id","pid"); -> jQuery
+		// document.getElementsByTagName("p").setAttribute("id","pid");
+		
+		//$("p").attr("class", "back");
+		$("p").addClass("back");
+		//$("p").attr("class", ""); //-> 그대로 class는 남아있다
+		$("p").removeClass();	
+	});
+	
+	$("td").click(function(){
+		let val = $(this).text();
+		
+		$("p").text(val);
+	});
+})
+
+</script>
+
+
+</body>
+</html>

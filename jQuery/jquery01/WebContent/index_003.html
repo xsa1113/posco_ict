@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+입력:<input type="text" id="text">
+<br>
+<input type="button" id="btn" value="버튼">
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#btn").click(function() {
+		
+		//getter
+		let value = $("#text").val();
+		//alert(value);
+		
+		//setter
+		$("#text").val("hello world");
+		
+	});
+});
+
+</script>
+
+</body>
+</html>

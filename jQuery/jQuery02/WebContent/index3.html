@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>Detail View</h3>
+
+<textarea rows="3" cols="30">기본글입니다...</textarea>
+<br><br>
+<button type="button" id="answer">답글 입력</button>
+
+<div id="answerFrm">
+
+<!-- <br>답글: <input type="text" id="answerText"> 
+//<br><button type="button" id="answerBtn">답글 작성완료</button> -->
+
+</div>
+
+<script type="text/javascript">
+//$("#answerFrm").hide();
+$(document).ready(function(){
+	
+	$("answer").click(function(){
+		//$("#answerFrm").show();
+	
+		let txtfiled = "<br>답글: <input type='text' id='answerText'>";
+		$("#answerFrm").append(txtfield);
+		
+		let btn ="<br><button type='button' id='answerBtn'>답글 작성완료</button>"
+		$("#answerFrm").append(btn);
+		
+	});
+	
+	/* $("#answerBtn").click(function(){
+		alert("answerBtn click");
+	}); */
+	
+	
+	// document 읽어드린 후에 click시 이벤트를 발생 시켜라
+	$(document).on("click","#answerBtn",function(){
+		alert("answerBtn click");
+	});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- 
+		Java Script : client(front) - view 
+						화면의 resource(input, event)의 값을 설정, 취득한 후의 처리
+						
+		Jquery : JavaScript 경량화, 간략화
+				Ajax(비동기 통신) -axios
+
+ -->
+ 
+ <script type="text/javascript">
+
+/* 
+		
+		형식 : 								onclick
+				$(tag명, id, class, name ).핸들러 함수(값 or 함수)
+				
+				$("#btn").click();
+ 
+ 
+ 				function func(){
+ 					
+ 				}
+ 				
+ 				let val = document.getElementById("id").value; - getter
+ 				document.getElementById("id").value = "hello"; -setter
+ 				
+ 				비교
+ 				JavaScript 				JQuery
+ 				value					val()
+ 				innerHTML				html()
+ 				innerText				text
+*/
+ 
+ </script>
+ 
+ <p>여기가 p 태그입니다</p>
+ 
+ <script type="text/javascript">
+ 	
+ 	let p = $("p").html(); // getter == innerHTML
+ 	
+ 	
+ 	//html은 태그형식으로 출력
+// 	$("p").html("html <b>p</b> tag"); //setter
+ 
+ 	//text는 문자열로 출력
+	 $("p").text("html <b>p</b> tag"); //setter 
+ </script>
+
+<p id = "demo">p tag id demo</p>
+
+<h3 class="cls">h3 tag class cls</h3>
+
+<p class="cls">p tag class cls</p>
+
+<script type="text/javascript">
+$(document).ready(function(){ // 현재 문서를 모두 rendering 후에
+	
+	let demo = $("#demo").html(); // text()
+	alert(demo);
+	
+	$(".cls").text("이 element의 class는 cls입니다");
+	
+	// jQuery -> p태그로 시작하는것들을 해당 문장으로 변경
+	//$("p").html("이것은 p태그입니다");
+	$("p").text("이것은 p태그입니다");
+	
+	
+	// javascript 
+	/* let allP = document.getElementsByTagName("p");
+	for(var i =0; i<allP.length; i++){
+		allP[i].innerHTML = "This is a p tag";
+	} */
+	
+	
+	
+});
+
+</script>
+
+</body>
+</html>
