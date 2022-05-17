@@ -8,20 +8,22 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 </head>
 <body>
-<h3>태어난 날부터 지금까지 몇일이 되었는지 출력이 되는 프로그램을 작성하시오.</h3>
 
-<form action="hello">
-<table>
-	<tr>
-		<td>선택일</td>
-		<td><input type="text" name="date"  ></td>
-	</tr>
+<div align="center" id="container1">
+<h2>태어난 날부터 지금까지 몇일이 되었는지 출력이되는 프로그램을 작성하시오.</h2>
 
+<p>선택일 : <input type="text" id ="date" > </p>
 
-</table>
-	<input type="submit" value="계산">
-</form>
+연도: <span id="year"></span>
+월: <span id="month"></span>
+일: <span id="day"></span>
 
+<button id="button1" onclick="btn()">계산</button>
+
+<br><br>
+
+<p id="cal"></p>
+</div>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -30,20 +32,26 @@ $(document).ready(function(){
 	$("#date").datepicker({
 		dateFormat : "yy/mm/dd",
 		dayNamesMin: week,
+		changeMonth : true,
+		changeYear : true,
+		color:"white",
+		yearRange: 'c-100:c+10',
 		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		onSelect : function(d){
-			alert(d);
+			
 			let arr  = d.split("/");
 			
 			$("#year").text(arr[0]);
 			$("#month").text(arr[1]);
-			$("#year").text(arr[2]);
+			$("#day").text(arr[2]);
 			
+			console.log(year);
 			let weekday = new Date($("date").datepicker({dateFormat: "yy/mm/dd" }).val());
 
 		}
 	});
 });
+
 
 </script>
 

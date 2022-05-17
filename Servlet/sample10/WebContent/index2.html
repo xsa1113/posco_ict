@@ -253,7 +253,15 @@ h1 {
   opacity: 0.6;
 }
 
+#container1{
+	color:white;
+	margin-top:4em;
+}
 
+#date{
+	background-color:white;
+	color:black;
+}
 </style>
 
 
@@ -276,10 +284,10 @@ h1 {
   </div>
 </div>
 
-<div >
+<div align="center" id="container1">
 <h2>태어난 날부터 지금까지 몇일이 되었는지 출력이되는 프로그램을 작성하시오.</h2>
 
-<p>선택일 : <input type="text" id ="date"> </p>
+<p >선택일 : <input type="text" id ="date"> </p>
 
 연도: <span id="year"></span>
 월: <span id="month"></span>
@@ -306,7 +314,7 @@ $(document).ready(function(){
 		yearRange: 'c-100:c+10',
 		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		onSelect : function(d){
-			alert(d);
+			
 			let arr  = d.split("/");
 			
 			$("#year").text(arr[0]);
@@ -342,6 +350,27 @@ function btn(){
 	console.log("일수차이는??" + btDay);
 	$("#cal").text("지금까지 당신이 살아온 날수는 "+btDay + "일입니다");
 }
+
+$(function() {
+
+	  var flame = $('#flame');
+	  var txt = $('h1');
+
+	  flame.on({
+	    click: function() {
+	      flame.removeClass('burn').addClass('puff');
+	      $('.smoke').each(function() {
+	        $(this).addClass('puff-bubble');
+	      });
+	      $('#glow').remove();
+	      txt.hide().html("It <b>will</b> come true..").delay(750).fadeOut(300);
+	      $('#candle').animate({
+	        'opacity': '.5'
+	      }, 100);
+	    }
+	  })
+	      
+	});
 
 
 </script>
