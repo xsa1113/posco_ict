@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>앙케이트</h1>
+
+<form id="frm" >
+<table>
+<tr>
+	<td>이름</td>
+	<td>
+		<input type="text" id="name" name="name" size="20" value="">
+		
+	</td>
+</tr>
+<tr>
+	<td>나이</td>
+	<td>
+		<input type="text" id="age" name="age" value="">
+	</td>
+</tr>
+
+<tr>
+	<td>좋아하는 과일</td>
+	<td>
+		<select name="fruit" multiple="multiple">
+			<option value="apple" selected="selected">사과</option>
+			<option value="pear" >배</option>
+			<option value="banana" >바나나</option>
+		</select>
+	</td>
+</tr>
+
+</table>
+
+
+<!-- 	<input type="submit" value="get"> -->
+
+<input type="button" onclick = "btnClick()" value="전송">
+
+</form>
+
+<script type="text/javascript">
+function btnClick(){
+	if($("#name").val().trim() == ""){
+		alert('이름을 입력해주세요');
+	}else if($("#age").val().trim() == ""){
+		alert('나이를 입력해 주십시오');
+	}else{
+		$("#frm").attr("action","hello").submit();
+	}
+	
+}
+
+</script>
+
+
+</body>
+</html>

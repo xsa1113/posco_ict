@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<style type="text/css">
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
+body {
+  background-color: #1e1934;
+}
+
+
+h1 {
+  position: fixed;
+  margin: 0 auto;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  width: 12em;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 100;
+  font-family: 'Sacramento';
+  letter-spacing: .1em;
+  color: white;
+  text-shadow: 0 0 20px black;
+  opacity: .8;
+}
+
+
+
+#glow {
+  position: absolute;
+  left: calc(50% - .1em);
+  bottom: calc(35% + 9em);
+  width: .2em;
+  height: .2em;
+  border-radius: 100%;
+  opacity: .15;
+}
+
+#candle {
+  position: absolute;
+  left: calc(50% - .75em);
+  bottom: 35%;
+  width: 1.5em;
+  height: 10em;
+  overflow: hidden;
+}
+#candle::before {
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  content: '';
+  width: 84%;
+  height: 80%;
+  background: linear-gradient(whitesmoke 0, #1e1934 125%);
+  border-radius: .25em;
+  box-sizing: border-box;
+  border: 1px solid #333;
+}
+
+#top {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 2em;
+  background-color: transparent;
+}
+#top #knot {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - .05em);
+  height: .5em;
+  width: .1em;
+  background-color: #0f3146;
+}
+#top .smoke {
+  position: absolute;
+  opacity: 0;
+  border-radius: 100%;
+}
+#top .smoke:nth-child(1) {
+  bottom: .1em;
+  left: calc(50% - .5em);
+  height: .5em;
+  width: .5em;
+  background-color: silver;
+}
+#top .smoke:nth-child(2) {
+  bottom: .6em;
+  left: 50%;
+  height: .6em;
+  width: .6em;
+  background-color: lightgray;
+  animation-delay: .2s;
+}
+#top .smoke:nth-child(3) {
+  bottom: 1.1em;
+  left: 20%;
+  height: .3em;
+  width: .3em;
+  background-color: whitesmoke;
+  animation-delay: .3s;
+}
+#top #flame {
+  position: absolute;
+  bottom: .15em;
+  width: 1.5em;
+  height: 1.6em;
+  background-color: #ffee86;
+  border-radius: 100%;
+  box-shadow: inset 0 0 0 .1em #ffee86;
+  transform: rotateY(30deg);
+  cursor: pointer;
+}
+#top #flame::after {
+  position: absolute;
+  content: '';
+  width: .7em;
+  height: .9em;
+  bottom: 10%;
+  left: calc(50% - .35em);
+  background-color: #ff3200;
+  border-radius: 100%;
+  animation: burnInner 1.5s ease-in-out infinite;
+}
+#top #flame:hover {
+  transition: all .1s ease-in-out;
+  background-color: yellow;
+}
+#top #flame:hover::after {
+  background-color: red;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1.5em 2.2em rgba(255, 246, 162, 0.75);
+  }
+  50% {
+    box-shadow: 0 0 1.5em 2em rgba(255, 246, 162, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 1.5em 2.2em rgba(255, 246, 162, 0.75);
+  }
+}
+@keyframes burn {
+  0% {
+    height: 1.7em;
+    transform: rotateY(30deg);
+  }
+  50% {
+    height: 1.3em;
+    transform: rotateY(0deg);
+    opacity: .9;
+  }
+  100% {
+    height: 1.7m;
+    transform: rotateY(30deg);
+  }
+}
+@keyframes burnInner {
+  0% {
+    height: .9em;
+    transform: rotateX(0deg);
+  }
+  50% {
+    height: .8em;
+    transform: rotateX(30deg);
+  }
+  100% {
+    height: .9em;
+    transform: rotateX(0deg);
+  }
+}
+@keyframes puff {
+  100% {
+    transform: rotateY(-30deg);
+    opacity: 0;
+  }
+}
+@keyframes puff-bubble {
+  0% {
+    opacity: 0;
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8, 0.8);
+  }
+}
+.glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.burn {
+  animation: burn 1.5s ease-in-out infinite;
+}
+
+.puff {
+  animation: puff .3s ease-in-out forwards;
+}
+
+.puff-bubble {
+  animation: puff-bubble .75s ease-in-out forwards;
+}
+
+.stripe {
+  position: absolute;
+  left: -.25em;
+  width: 2em;
+  height: .25em;
+  background-color: #ff4b6f;
+  transform: rotate(25deg);
+  border-radius: 100%;
+  box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.stripe:nth-child(1) {
+  top: 2.7em;
+  opacity: 1.4;
+}
+
+.stripe:nth-child(2) {
+  top: 4.2em;
+  opacity: 0.9;
+}
+
+.stripe:nth-child(3) {
+  top: 5.7em;
+  opacity: 0.73333;
+}
+
+.stripe:nth-child(4) {
+  top: 7.2em;
+  opacity: 0.65;
+}
+
+.stripe:nth-child(5) {
+  top: 8.7em;
+  opacity: 0.6;
+}
+
+
+</style>
+
+
+</head>
+<body id = "back">
+
+<div id="glow" class="glow"></div>
+<div id="candle">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div id="top">
+    <div class="smoke"></div>
+    <div class="smoke"></div>
+    <div class="smoke"></div>
+    <div id="knot"></div>
+    <div id="flame" class="burn"></div>
+  </div>
+</div>
+
+<div >
+<h2>태어난 날부터 지금까지 몇일이 되었는지 출력이되는 프로그램을 작성하시오.</h2>
+
+<p>선택일 : <input type="text" id ="date"> </p>
+
+연도: <span id="year"></span>
+월: <span id="month"></span>
+일: <span id="day"></span>
+
+<button id="button1" onclick="btn()">계산</button>
+
+<br><br>
+
+<p id="cal"></p>
+</div>
+
+ 
+<script type="text/javascript">
+
+$(document).ready(function(){
+	let week = ['일', '월', '화', '수', '목', '금', '토'];
+	
+	$("#date").datepicker({
+		dateFormat : "yy/mm/dd",
+		dayNamesMin: week,
+		changeMonth : true,
+		changeYear : true,
+		yearRange: 'c-100:c+10',
+		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		onSelect : function(d){
+			alert(d);
+			let arr  = d.split("/");
+			
+			$("#year").text(arr[0]);
+			$("#month").text(arr[1]);
+			$("#day").text(arr[2]);
+			
+			console.log(year);
+			let weekday = new Date($("date").datepicker({dateFormat: "yy/mm/dd" }).val());
+
+		}
+	});
+});
+
+
+function btn(){
+	var birthday = new Date($("#date").val());
+	var now = new Date();
+	
+	var now_year = now.getFullYear();
+	var now_month = now.getMonth() + 1;
+	var now_day = now.getDate();
+	
+	var bir_year = birthday.getFullYear();
+	var bir_month = birthday.getMonth() + 1;
+	var bir_day = birthday.getDate();
+	
+	var stDate = new Date(bir_year,bir_month,bir_day);
+	var endDate = new Date(now_year,now_month,now_day );
+	
+	var btMs = endDate.getTime() - stDate.getTime();
+	var btDay = btMs/(1000*60*60*24);
+	
+	console.log("일수차이는??" + btDay);
+	$("#cal").text("지금까지 당신이 살아온 날수는 "+btDay + "일입니다");
+}
+
+
+</script>
+
+</body>
+</html>

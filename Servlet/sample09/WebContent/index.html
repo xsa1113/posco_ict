@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+</head>
+<body>
+
+<form action="hello" method = "get">
+<table>
+	<tr>
+		<td>이름</td>
+		<td>
+			<input type="text" id="name" name="name" size="20" value="">
+			
+		</td>
+	</tr>
+
+
+	<tr>
+		<td>나이</td>
+		<td>
+			<select name="age">
+				<option value="10대" selected="selected">10대</option>
+				<option value="20대" >20대</option>
+				<option value="30대" >30대</option>
+			</select>
+		</td>
+	</tr>
+
+
+	<tr>
+		<td>성별</td>
+		<td>
+			<label><input type="radio" name="eee" value="man">남자</label>
+			<label><input type="radio" name="eee" value="woman">여자</label>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>선택일</td>
+		<td><input type="text" name="date"  ></td>
+	</tr>
+	
+	
+	<tr>
+		<td>취미</td>
+		<td>
+			<input type = "checkbox" name="hobby" value="축구">축구
+			<input type = "checkbox" name="hobby" value="농구">농구
+			<input type = "checkbox" name="hobby" value="배구">배구	
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td>연봉</td>
+		<td>
+			<select name="salary">
+				<option value="1000만원" selected="selected">1000만원</option>
+				<option value="2000만원" >2000만원대</option>
+				<option value="3000만원" >3000만원대</option>
+			</select>
+		</td>
+	</tr>
+	
+
+</table>
+		
+	<input type="submit" value="get">
+
+
+</form>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	let week = ['일', '월', '화', '수', '목', '금', '토'];
+	
+	$("#date").datepicker({
+		dateFormat : "yy/mm/dd",
+		dayNamesMin: week,
+		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		onSelect : function(d){
+			alert(d);
+			let arr  = d.split("/");
+			
+			$("#year").text(arr[0]);
+			$("#month").text(arr[1]);
+			$("#year").text(arr[2]);
+			
+			let weekday = new Date($("date").datepicker({dateFormat: "yy/mm/dd" }).val());
+
+		}
+	});
+});
+
+</script>
+
+</body>
+</html>
