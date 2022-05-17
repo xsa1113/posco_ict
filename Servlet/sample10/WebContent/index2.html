@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 <style type="text/css">
-@import url("https://fonts.googleapis.com/css?family=Sacramento");
+/* @import url("https://fonts.googleapis.com/css?family=Sacramento"); */
 body {
   background-color: #1e1934;
 }
@@ -262,7 +262,13 @@ h1 {
 	background-color:white;
 	color:black;
 }
+
+#kent{
+	font-style: italic;
+}
 </style>
+
+
 
 
 </head>
@@ -285,7 +291,7 @@ h1 {
 </div>
 
 <div align="center" id="container1">
-<h2>태어난 날부터 지금까지 몇일이 되었는지 출력이되는 프로그램을 작성하시오.</h2>
+<h2 id ="kent">당신의 생일을 입력해 주세요</h2>
 
 <p >선택일 : <input type="text" id ="date"> </p>
 
@@ -330,25 +336,32 @@ $(document).ready(function(){
 
 
 function btn(){
-	var birthday = new Date($("#date").val());
-	var now = new Date();
+	var birthday = $("#date").val();
+	if(birthday == ""){
+		alert("생일값을 입력해주세요");
+	}else{
+		
+		birthday = new Date(birthday);
+		var now = new Date();
+		
+		var now_year = now.getFullYear();
+		var now_month = now.getMonth() + 1;
+		var now_day = now.getDate();
+		
+		var bir_year = birthday.getFullYear();
+		var bir_month = birthday.getMonth() + 1;
+		var bir_day = birthday.getDate();
+		
+		var stDate = new Date(bir_year,bir_month,bir_day);
+		var endDate = new Date(now_year,now_month,now_day );
+		
+		var btMs = endDate.getTime() - stDate.getTime();
+		var btDay = btMs/(1000*60*60*24);
+		
+		console.log("일수차이는??" + btDay);
+		$("#cal").text("지금까지 당신이 살아온 날수는 "+btDay + "일입니다");
+	}
 	
-	var now_year = now.getFullYear();
-	var now_month = now.getMonth() + 1;
-	var now_day = now.getDate();
-	
-	var bir_year = birthday.getFullYear();
-	var bir_month = birthday.getMonth() + 1;
-	var bir_day = birthday.getDate();
-	
-	var stDate = new Date(bir_year,bir_month,bir_day);
-	var endDate = new Date(now_year,now_month,now_day );
-	
-	var btMs = endDate.getTime() - stDate.getTime();
-	var btDay = btMs/(1000*60*60*24);
-	
-	console.log("일수차이는??" + btDay);
-	$("#cal").text("지금까지 당신이 살아온 날수는 "+btDay + "일입니다");
 }
 
 $(function() {
