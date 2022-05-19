@@ -62,9 +62,12 @@ public class MemberDao {
 	public boolean idCheck(String id) {
 		String sql = "SELECT ID FROM MEMBER WHERE ID = ?";
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		// 합계를 낼 수 잇다, 중복체크를 위함 
+		/* String sql2 = "SELECT COUNT(*) FROM MEMBER WHERE ID=?"; */
+		
+		Connection conn = null; // DB 연결용 
+		PreparedStatement pstmt = null; // Query 실해용
+		ResultSet rs = null; // 결과값 출력
 		
 //		List<MemberDto> list = new ArrayList<>();
 		
@@ -77,25 +80,55 @@ public class MemberDao {
 			
 			rs = pstmt.executeQuery();
 			
-			String name = "";
+			
 			while(rs.next()) {
-				name = rs.getString(1);
-			}
-			
-			if(id == name) {
-				// 동일한게 있다는 것 
 				count = 1;
+				//값이 있으면 
 			}
-			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}finally {
 			DBclose.close(conn, pstmt, rs);
 		}
-		return count>0?true:false;
-		
-		
+		return count>0?true:false;		
 	}
 	
+	public MemberDto login(MemberDto dto) {
+		String sql = "SELECT ID,NAME,EMAIL,AUTH FROM MEMBER WHERE ID=? AND PWD=?";
+		
+		Connection conn = null; // DB 연결용 
+		PreparedStatement pstmt = null; // Query 실해용
+		ResultSet rs = null; // 결과값 출력
+		
+		MemberDto mem = null;
+	
+		conn = DBConnection.getConnection();
+		System.out.println("1/3 login success");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPwd());
+			System.out.println("2/3 login success");
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String id = rs.getString(1);
+				String name = rs.getString(2);
+				String email = rs.getString(3);
+				int auth = rs.getInt(4);
+				
+				mem = new MemberDto(id,null,name,email,auth);
+			}
+			System.out.println("3/3login success");
+		} catch (SQLException e) {
+			System.out.println("login fail");
+			e.printStackTrace();
+		} finally {
+			DBclose.close(conn, pstmt, rs);
+		}
+		return mem;
+	}
 }

@@ -4,6 +4,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 <meta charset="UTF-8">
 <title>login</title>
 
@@ -49,6 +50,41 @@
 </table>
 </form>
 </div>
+
+<script type="text/javascript">
+let user_id = $.cookie("user_id");
+
+
+
+if(user_id != null){
+	$("#id").val(user_id);
+	$("#chk_save_id").prop("checked", true);
+	
+}
+
+$("#chk_save_id").click(function(){
+	if($("#chk_save_id").is(":checked")){
+		//체크가되었을 때
+		
+		if($("#id").val().trim() == ""){
+			alert("id를 입력해 주십시오");
+			$("#chk_save_id").prop("checked", false);
+		}else{
+			//cookie에 저장 
+			$.cookie("user_id", $("#id").val().trim(), {expires : 7, path:"/"});
+		}
+		
+	}
+	else{
+		//cookie를 삭제
+		$.removeCookie("user_id", {path : "/"});
+	}
+});
+
+
+
+
+</script>
 
 
 </body>

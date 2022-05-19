@@ -8,24 +8,10 @@ System.out.println(id);
 MemberDao dao = MemberDao.getInstance();
 
 boolean isS = dao.idCheck(id);
-out.print(isS);
-%>
-<%-- <%
-if(isS){
 
-%>
-	<script type="text/javascript">
-	alert("동일한 아이디가 있습니다");
-	</script>
-	
-<%
-} else{
-%>
-	<script type="text/javascript">
-	alert("동일한 아이디가 없습니다. 사용해도 좋습니다");
-	</script>
-	
-	<%
-	
+if(isS){
+	out.println("NO");
+}else{
+	out.println("OK");
 }
-%> --%>
+%>

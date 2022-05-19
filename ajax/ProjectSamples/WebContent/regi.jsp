@@ -68,26 +68,36 @@
 $(document).ready(function(){
 	
 	$("#btn").click(function(){
-		$.ajax({
-			url:"idchk.jsp",
-			type:"get",
-			datatype:"json",
-			data : "id="+$("#id").val(),
-			success:function(str){
-				
-				let json =JSON.parse(str.trim());
-				
-				// false
-				alert(json);
-				
-				$("#id").val(json.id);
-				
-			},
-			error:function(){
-				alert("error");
-			}
-		});
 		
+		if($("#id").val().trim() == ""){
+			alert("id를 입력해 주십시오");
+		}else{
+			$.ajax({
+				url:"idchk.jsp",
+				type:"post",
+				data : {"id" : $("#id").val()},
+				
+				success:function(str){
+					
+					if(str.trim() == "OK"){
+						//사용가능
+						$("#idcheck").css("color","#0000ff");
+						$("#idcheck").text("사용 가능한 아이디입니다");					
+						
+					}else{
+						$("#idcheck").css("color","#ff0000");					
+						$("#idcheck").text("사용중인 아이디 입니다");										
+						$("#id").val("");
+					}
+					
+					
+				},
+				error:function(){
+					alert("error");
+				}
+			});
+			
+		}
 	});
 	
 });
