@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
 <%
 
 Object obj = session.getAttribute("login");
@@ -24,8 +25,11 @@ MemberDto mem = (MemberDto)obj;
 
 <%
 BbsDao dao = BbsDao.getInstance();
+int seq = Integer.parseInt(request.getParameter("seq"));
+dao.count(seq);
+BbsDto dto = dao.selectWriter(seq);
 
-List<BbsDto> list = dao.getBbsList();
+//조회수 증가
 %>
 
 
@@ -37,52 +41,43 @@ List<BbsDto> list = dao.getBbsList();
 </head>
 <body>
 
-<h2>게시판</h2>
+<h2>내용</h2>
 
 <div align="center">
-
 <table border = "1">
-<col width="70"><col width="600"><col width="150">
-
-
+<col width="70"><col width="600">
 <tr>
-	<th>번호</th><th>제목</th><th>작성자</th>
-
+	<th> 작성자</th>
+		<td><%= dto.getId() %></td>
+</tr>
+<tr>
+	<th>조회수</th>
+		<td><%= dto.getReadcount() %></td>
+</tr>
+<tr>
+	<th> 작성일</th>
+		<td><%= dto.getWdate() %></td>
+</tr>
+<tr>
+	<th> 제목</th>
+		<td><%= dto.getTitle() %></td>
+</tr>
+<tr>
+	<th> 정보</th>
+		<td><%= dto.getRef() %> - <%= dto.getStep() %> - <%= dto.getDepth() %></td>
+</tr>
+<tr>
+	<th> 내용</th>
+		<td><%= dto.getContent() %></td>
 </tr>
 
-<%
-if(list == null || list.size() == 0){
-	%>
-	<tr>
-		<td colspan="3">작성된 글이 없습니다</td>
-	</tr>
-	<%
-}else{
-	for(int i=0; i<list.size(); i++){
-		BbsDto bbs = list.get(i);
-	%>
-		<tr>
-			<th><%= i+1 %></th>
 
-			<td>
-				<a href="bbsdetail.jsp?seq=<%=bbs.getSeq() %>">
-				<%= bbs.getTitle() %>
-				</a>
-			</td>
-			
-			<td>
-				<%= bbs.getId() %>
-			</td>
-		</tr>
-	
-	<%
-	}
-}
-%>
 </table>
 
-<a href="bbswrite.jsp">글쓰기</a>
-
 </div>
+
+
+
+
 </body>
 </html>

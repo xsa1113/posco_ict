@@ -22,10 +22,9 @@ MemberDto dto = dao.login(new MemberDto(id,pwd,null,null,0));
 
 if(dto != null && !dto.getId().equals("")){
 	
-	//로그인 되었을때
-	
 	session.setAttribute("login", dto);
 	session.setMaxInactiveInterval(60 * 60 * 2);
+
 
 %>
 <script type="text/javascript">
