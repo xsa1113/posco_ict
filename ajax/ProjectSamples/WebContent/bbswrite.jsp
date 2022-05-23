@@ -106,7 +106,7 @@ $(document).ready(function(){
 				
 				
 				success:function(str){
-					
+					alert("글작성이 완료되었습니다");
 				},
 				error:function(){
 					alert("error");

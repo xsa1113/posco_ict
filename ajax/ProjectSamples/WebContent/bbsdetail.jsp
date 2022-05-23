@@ -74,8 +74,39 @@ BbsDto dto = dao.selectWriter(seq);
 
 </table>
 
+<br>
+<button type="button" onclick="answerBbs(<%=dto.getSeq() %>)">답글</button>
+<button type="button" onclick="location.href= 'bblist.jsp'">글목록</button>
+
+<%
+
+if(dto.getId().equals(mem.getId())){
+%>
+
+<button type="button" onclick="updateBbs(<%=dto.getSeq() %>)">수정</button>
+<button type="button" onclick="deleteBbs(<%=dto.getSeq() %>)">삭제</button>
+
+<%
+}
+%>
 </div>
 
+
+<script type="text/javascript">
+function answerBbs(seq){
+	location.href = "answer.jsp?seq=" + seq;
+}
+function updateBbs(seq){
+	// 수정 기존 내용 제목과 내용 수정
+	location.href = "update.jsp?seq=" + seq;
+}
+function deleteBbs(seq){
+	/* 업데이트 명령어 활용 del를 바꿔준다 0냐 1냐에 따라서 달라진다 bblist 이글은 삭제되었습니다. */
+	location.href = "delete.jsp?seq=" + seq;
+}
+
+
+</script>
 
 
 
