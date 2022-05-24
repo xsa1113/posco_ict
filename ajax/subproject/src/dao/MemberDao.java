@@ -55,10 +55,35 @@ private static MemberDao dao = null;
 		return count>0?true:false;
 	}
 	
+	//delete
+	public boolean delete(String id) {
+		String sql = "delete from subjectcr where id=?";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		try {
+			
+			conn = DBConnection.getConnection();
+			System.out.println("1/3 deleteMember success");
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			System.out.println("2/3 deleteMember success");
+			count = psmt.executeUpdate();	
+			System.out.println("3/3 deleteMember success");
+
+		} catch (SQLException e) {
+			System.out.println("deleteMember fail");
+			e.printStackTrace();
+			
+		}finally {
+			DBClose.close(conn, psmt, null);		
+		}
+		return count>0?true:false;
+		
+	}
+	
 	public MemberDto login(MemberDto dto) {
-		String sql = " SELECT id,password,name,age,birth,email,tall "
-				   + " FROM MEMBER "
-				   + " WHERE ID=? AND PWD=? ";
+		String sql =  "select * from subjectcr where id = ? and password = ? ";
 		
 		Connection conn = null;			
 		PreparedStatement psmt = null; 	
@@ -73,15 +98,15 @@ private static MemberDao dao = null;
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPwd());
 			System.out.println("2/3 login success");
-			rs = psmt.executeQuery(sql);
+			rs = psmt.executeQuery();
 			if(rs.next()) {
 				String id = rs.getString(1);
 				String pwd = rs.getString(2);
 				String name = rs.getString(3);
-				String email = rs.getString(4);
-				int tall = rs.getInt(5);
-				String birth = rs.getString(6);
-				int age = rs.getInt(7);
+				int age = rs.getInt(4);
+				String birth  = rs.getString(5);
+				String email = rs.getString(6);
+				int tall = rs.getInt(7);
 				
 				
 				mem = new MemberDto(id, pwd,name, email,tall, birth, age);

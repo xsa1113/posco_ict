@@ -8,6 +8,12 @@
 </head>
 <body>
 <%
+String id = request.getParameter("id");
+
+%>
+
+
+<%
 String proc = request.getParameter("proc");
 
 if(proc.equals("regi")){
@@ -31,10 +37,27 @@ if(proc.equals("regi")){
 }else if(proc.equals("login")){
 	String msg = request.getParameter("msg");
 	if(msg.equals("OK")){
-		%>
+			%>
 			<script type="text/javascript">
 			alert("환영합니다");
-			location.href = "bbs?param=bbslist";
+			location.href = "member?param=mypage";
+			</script>
+			<%
+		}else{
+			%>
+			<script type="text/javascript">
+			alert("아이디나 비밀번호가 틀렸습니다. 다시 기입해 주십시오");
+			location.href = "member?param=login";
+			</script>
+			<%
+		}
+}else if(proc.equals("delete")){
+	String msg = request.getParameter("msg");
+	if(msg.equals("OK")){
+			%>
+			<script type="text/javascript">
+			alert("회원탈퇴가 완료되었습니다");
+			location.href = "member?param=login";
 			</script>
 			<%
 		}else{

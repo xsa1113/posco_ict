@@ -36,6 +36,19 @@ public class MemberController extends HttpServlet {
 		}else if(param.equals("regi")){
 			resp.sendRedirect("member/create.jsp");
 		}
+		//회원 탈퇴
+		else if(param.equals("delete")) {
+			System.out.println("회원탈퇴진행 1");
+			String id = req.getParameter("id");
+			MemberDao dao = MemberDao.getInstance();
+			boolean isS = dao.delete(id);
+			
+			String msg = "OK";
+			if(isS==false) {
+				msg="NG";
+			}
+			resp.sendRedirect("message.jsp?proc=delete&msg=" + msg +"&id=" + id);
+		}
 		//회원등록
 		else if(param.equals("createAf")) {
 			System.out.println("createAf");
@@ -55,7 +68,7 @@ public class MemberController extends HttpServlet {
 			if(isS==false) {
 				msg="NG";
 			}
-			resp.sendRedirect("message.jsp?proc=regi&msg=" + msg);
+			resp.sendRedirect("message.jsp?proc=regi&msg=" + msg +"&id=" + id);
 		}
 		
 		// 로그인 
@@ -80,6 +93,11 @@ public class MemberController extends HttpServlet {
 		
 		else if(param.equals("bbslist")) {
 			resp.sendRedirect("member/bblist.jsp");
+		}
+		else if(param.equals("mypage")) {
+			String id =  ((MemberDto)req.getSession().getAttribute("login")).getId();
+//			req.setAttribute(param, id);
+			resp.sendRedirect("member/mypage.jsp?id=" + id);
 		}
 		
 	}
