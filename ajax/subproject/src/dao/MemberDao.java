@@ -129,5 +129,46 @@ private static MemberDao dao = null;
 		return mem;
 	}
 	
+	//아이디 중복검사
+	public boolean getId(String id) {
+		
+		String sql = " SELECT ID "
+				   + " FROM subjectcr "
+				   + " WHERE ID=? ";
+		/*
+		String sql = " SELECT COUNT(*) "
+				   + " FROM MEMBER "
+				   + " WHERE ID=? ";
+		*/
+		
+		Connection conn = null;			// DB 연결용
+		PreparedStatement psmt = null; 	// Query 실행용
+		ResultSet rs = null;			// 결과 취득용
+		
+		boolean findId = false;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/3 getId success");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			System.out.println("2/3 getId success");
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				findId = true;
+			}
+			System.out.println("3/3 getId success");
+			
+		} catch (SQLException e) {
+			System.out.println("getId fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);
+		}
+		
+		return findId;
+	}
 
 }

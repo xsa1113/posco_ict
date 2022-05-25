@@ -9,6 +9,7 @@
 <body>
 
 <%
+
 response.sendRedirect("member?param=login");
 
 

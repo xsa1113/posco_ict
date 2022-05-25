@@ -1,5 +1,9 @@
+<%@page import="dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,10 +68,14 @@
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
+#idsave{
+	align-content: center;
+}
 
 
 </style>
 
+<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 </head>
 <body id="LoginForm">
 	<div class="container">
@@ -81,10 +89,8 @@
 				    <form action ="../member" method="post">
 				    <input type="hidden" name ="param" value="loginAf">				
 				        <div class="form-group">
-				
-				
 				            <input type="text" class="form-control" id="id" name="id" placeholder="ID">
-				
+				            
 				        </div>
 				
 				        <div class="form-group">
@@ -94,6 +100,8 @@
 				        </div>
 				        <div class="forgot">
 				        <a href="../member?param=regi">회원가입 </a>
+				        <span style = "float: right;" ><input type="checkbox" id="chk_save_id" >아이디저장</span>
+				 
 						</div>
 						
 				        <input type="submit" class="btn btn-primary" value= "Login">
@@ -107,4 +115,33 @@
 
 
 </body>
+
+
+<script type="text/javascript">
+
+let user_id = $.cookie("user_id");
+if(user_id != null){
+	$("#id").val(user_id);
+	$("#chk_save_id").prop("checked", true);
+}
+
+$("#chk_save_id").click(function() {
+	
+	if( $("#chk_save_id").is(":checked") ){ // 체크되었을 때
+		
+		if($("#id").val().trim() == ""){
+			alert("id를 입력해 주십시오");
+			$("#chk_save_id").prop("checked", false);
+		}else{
+			// cookie에 저장	
+			$.cookie("user_id", $("#id").val().trim(), { expires:7, path:"/" });
+		}
+	}
+	else{ // cookie를 삭제
+		$.removeCookie("user_id", { path:"/" });
+	}	
+	
+});
+
+</script>
 </html>

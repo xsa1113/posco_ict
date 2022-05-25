@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDao;
 import dto.MemberDto;
+import net.sf.json.JSONObject;
 
 @WebServlet("/member")
 public class MemberController extends HttpServlet {
@@ -32,7 +33,16 @@ public class MemberController extends HttpServlet {
 		String param = req.getParameter("param");
 		
 		if(param.equals("login")) {
+			MemberDto dto =(MemberDto)req.getSession().getAttribute("login");
+			if(dto != null) {
+				req.getSession().invalidate();
+				System.out.println("세션 삭제 성공 로그아웃 성공");
+			}else {
+				System.out.println("세션 비었슴");
+			}
 			resp.sendRedirect("member/subject.jsp");
+			
+			
 		}else if(param.equals("regi")){
 			resp.sendRedirect("member/create.jsp");
 		}
@@ -57,7 +67,8 @@ public class MemberController extends HttpServlet {
 			String name = req.getParameter("name");
 			int age =  Integer.parseInt(req.getParameter("age"));
 			String birth = req.getParameter("birth");
-			String email = req.getParameter("email");
+			String email = req.getParameter("sample4_roadAddress");
+			System.out.println(email);
 			int tall = Integer.parseInt(req.getParameter("tall"));
 			
 			MemberDao dao = MemberDao.getInstance();
@@ -98,6 +109,25 @@ public class MemberController extends HttpServlet {
 			String id =  ((MemberDto)req.getSession().getAttribute("login")).getId();
 //			req.setAttribute(param, id);
 			resp.sendRedirect("member/mypage.jsp?id=" + id);
+		}
+		//아이디 체크
+		else if(param.equals("checkId")) {
+			String id = req.getParameter("id");
+			//DB 접속 Data를 산출
+			MemberDao dao = MemberDao.getInstance();
+			boolean b = dao.getId(id);
+			
+			String str = "NO";
+			if(b == false) {
+				str = "OK";
+			}
+			
+			JSONObject obj = new JSONObject();
+			obj.put("str", str);
+			
+			resp.setContentType("application/x-json; charset=utf-8");
+			resp.getWriter().print(obj);
+			
 		}
 		
 	}

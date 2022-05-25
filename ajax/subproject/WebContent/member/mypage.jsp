@@ -1,3 +1,4 @@
+<%@page import="dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +10,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<%
+
+request.setCharacterEncoding("utf-8");
+
+%>
+    
+    <%
+
+Object obj = session.getAttribute("login");
+if(obj == null){
+	%>
+	<script>
+	alert("로그인해주십시오");
+	location.href = "../member?param=login";
+	</script>
+
+	<%
+}
+
+MemberDto mem = (MemberDto)obj;
+
+%>
 
 <%
 String id = request.getParameter("id");
@@ -29,29 +53,32 @@ String id = request.getParameter("id");
 						<input type="hidden" name="param" value="delete">
 							<fieldset>
 								<div class="row">
-									<div class="center-block" >
+									<div class="center-block" style="margin: 4em" >
 										<img class="profile-img" src="../images/사진5.png" width="100%" height="auto" alt="">
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
 										<div class="form-group">
+										<br>
 											<div class="input-group">
+												
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
+												
 												<p class ="form-control"><b><%=id %></b>님 환영합니다</p>
 												<%-- <input class="form-control" placeholder="<%=id %>님 환영합니다" name="loginname" type="text" autofocus> --%>
 											</div>
 										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
 												
 											</div>
-										</div>
+										</div> -->
 										<div class="form-group">
 											<input type="submit" class="btn btn-lg btn-primary btn-block" value="회원탈퇴">
 										</div>
@@ -61,7 +88,7 @@ String id = request.getParameter("id");
 						</form>
 					</div>
 					<div class="panel-footer ">
-						You have an account! <a href="#" onClick=""> <b>logout</b> </a>
+						로그아웃 하기! <a href="../member?param=login" id="logdel"> <b>logout</b> </a>
 					</div>
                 </div>
 			</div>
@@ -69,4 +96,7 @@ String id = request.getParameter("id");
 	</div>
 
 </body>
+
+
+
 </html>
