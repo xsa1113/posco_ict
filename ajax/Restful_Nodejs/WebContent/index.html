@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+.wrapper{
+    width:300px;
+    border-radius:10px;
+    border:5px solid #ff9e11;
+    margin:auto;
+}
+.wrapper div{
+    text-align: center;
+
+}
+.wrapper input,textarea, button{
+    width:90%;
+
+}
+textarea{
+    height:250px;
+}
+</style>
+<body>
+
+
+<div class="wrapper">
+    
+        <div>
+            작성자:<input type="text" name="writer" id="writer" value= "">
+        </div>
+        <div>
+            제목:<input type="text" name="title" id="title" value="">
+        </div>
+        <div>
+            내용:<textarea name="content" id="content"></textarea>
+        </div>
+        <div>
+            <button type="button" id="send" value=""> 글등록 </button>
+            
+        </div>
+    
+</div>    
+
+</body>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$("button").click(function(){
+		var writer = $("#writer").val();
+		
+		$.ajax({
+			url:"http://localhost:8090/regist",
+			type:"post",
+			data : {writer:writer},
+			datatype:"json",
+			
+			success:function(str){
+				alert("success");
+			},
+			error:function(str){
+				alert("error");
+			}	
+		});
+	});
+	
+});
+
+
+</script>
+
+</html>
