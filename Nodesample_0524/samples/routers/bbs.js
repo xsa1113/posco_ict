@@ -114,7 +114,7 @@ app.get('/bbsdetail', function(req, res){
     var sql2 = "update bbs set readcount = readcount+1 where seq = ?";
 
     conn.query(sql2, params, function(err, results, fileds){
-
+        if(err) console.log("에러발생!", err);
     });
 
 
