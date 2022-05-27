@@ -1,0 +1,55 @@
+<script>
+    var process = '<%=proc %>';
+    var msg = '<%=msg %>';
+
+    switch(process){
+        case "login" :
+            if(msg == "OK"){
+                alert("환영합니다2");
+                location.href="bbslist";
+            }else{
+                alert("아이디나 비밀번호가 틀렸습니다");
+                location.href = "login";
+            }
+            break;
+
+        case "bbswrite" :
+            if(msg == "OK"){
+                alert("글작성이 완료되었습니다");
+                location.href="bbslist";
+            }else{
+                alert("글작성이 오류가 발생되었습니다");
+                location.href="bbswrite";
+            }
+            break;
+        
+        case "bbsupdate" :
+            if(msg == "OK"){
+                alert("글 수정이 완료되었습니다.");
+                location.href="bbslist";
+            }else{
+                alert("글 수정이 오류가 발생되었습니다.");
+                location.href="bbsupdate";
+            }
+            break;
+
+        case "bbsdelete" :
+            if(msg == "OK"){
+                alert(" 글 삭제가 완료되었습니다.");
+                location.href="bbslist";
+            }else{
+                alert(" 글 삭제가 오류가 발생되었습니다");
+                location.href="bbslist"
+            }
+            break;
+
+        case "bbsanswer" :
+            if(msg =="OK"){
+                alert("답글이 작성이 완료되었습니다");
+                location.href="bbslist";
+            }else{
+                alert("답글이 작성 오류가 발생되었습니다.");
+                location.href="bbslist";
+            }
+    }
+</script>

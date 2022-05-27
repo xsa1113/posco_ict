@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+    
+<h2>내용</h2>
+
+<div align="center">
+<table border = "1">
+<col width="70"><col width="600">
+
+<tr>
+	<th> 작성자</th>
+		<td><%= data.ID %></td>
+</tr>
+<tr>
+	<th>조회수</th>
+		<td><%= data.READCOUNT %></td>
+</tr>
+<tr>
+	<th> 작성일</th>
+		<td><%= data.WDATE %></td>
+</tr>
+<tr>
+	<th> 제목</th>
+		<td><%= data.TITLE %></td>
+</tr>
+<tr>
+	<th> 정보</th>
+		<td><%= data.REF %> - <%= data.STEP %> - <%= data.DEPTH %></td>
+</tr>
+<tr>
+	<th> 내용</th>
+		<td><%= data.CONTENT %></td>
+</tr>
+
+
+
+</table>
+
+<br>
+<button type="button" onclick="location.href='bbsanswer?seq=<%=data.SEQ %>'">답글</button>
+<button type="button" onclick="location.href= 'bbslist'">글목록</button>
+
+<%if(data.ID == user) {%>    
+    <button type="button" onclick="location.href= 'bbsupdate?seq=<%=data.SEQ %>'">수정</button>
+    <button type="button" onclick="location.href= 'bbsdelete?seq=<%=data.SEQ %>'">삭제</button>
+<%} %>
+</div>
+
+<!-- 
+<script type="text/javascript">
+    function answerBbs(seq){
+        location.href = "answer.jsp?seq=" + seq;
+    }
+    function updateBbs(){
+        // 수정 기존 내용 제목과 내용 수정
+        var seq = data.SEQ;
+        
+        // location.href = "./bbs?param=update&seq=" + seq;
+        console.log(seq);
+    }
+    function deleteBbs(){
+        /* 업데이트 명령어 활용 del를 바꿔준다 0냐 1냐에 따라서 달라진다 bblist 이글은 삭제되었습니다. */
+        // location.href = "./bbs?param=delete&seq=" + seq;
+    }
+    
+    
+    </script> -->
+
+
+</body>
+</html>
