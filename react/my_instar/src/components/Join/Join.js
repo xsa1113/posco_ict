@@ -15,6 +15,7 @@ const Join = () => {
   });
   const navigate = useNavigate();
   const { insertUsers, users } = useContext(UserContext);
+
   const onSubmitLogin = (e) => {
     e.preventDefault();
     const findUser = users.find((data) => data.userId === user.id);
