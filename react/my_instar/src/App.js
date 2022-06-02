@@ -13,6 +13,7 @@ import { Follow } from "./data/Follow";
 import { Post } from "./data/Post";
 import { PostContext } from "./store/PostContext";
 import { FollowContext } from "./store/FollowContext";
+import Search from "./components/Search/Search";
 
 function App() {
   const [users, setUsers] = useState(Users);
@@ -64,13 +65,11 @@ function App() {
             <Routes>
               <Route path="/" element={<Layout></Layout>}>
                 <Route index path="/" element={<Main></Main>}></Route>
+                <Route path="search" element={<Search></Search>}></Route>
                 <Route path="shopping" element={<Main></Main>}></Route>
                 <Route path="profile" element={<Profile></Profile>}></Route>
               </Route>
-              <Route
-                path="/login"
-                element={<BootstrapLogin></BootstrapLogin>}
-              ></Route>
+              <Route path="/login" element={<BootstrapLogin></BootstrapLogin>}></Route>
               <Route path="/join" element={<Join></Join>}></Route>
               <Route path="/*" element={<Page404></Page404>}></Route>
             </Routes>

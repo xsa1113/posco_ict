@@ -6,7 +6,7 @@ import { UserContext } from "../../store/UserContext";
 import ProfileBody from "./ProfileBody";
 import ProfileHeader from "./ProfileHeader";
 import "./Profile.css";
-import ProfileBoard from "./ProfileBoard";
+import Posts from "../Posts/Posts";
 
 const Profile = () => {
   const { users } = useContext(UserContext);
@@ -36,12 +36,12 @@ const Profile = () => {
           following={myFollowing()}
           posts={myPosts()}
         ></ProfileBody>
-        <ProfileBoard
+        <Posts
           posts={myPosts()}
           name={name}
           img={img}
           deletePost={deletePost}
-        ></ProfileBoard>
+        ></Posts>
       </Container>
     </>
   );
