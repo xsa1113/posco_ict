@@ -6,6 +6,7 @@ import { UserContext } from "../../store/UserContext";
 import ProfileBody from "./ProfileBody";
 import ProfileHeader from "./ProfileHeader";
 import "./Profile.css";
+import ProfileBoard from "./ProfileBoard";
 
 const Profile = () => {
   const { users } = useContext(UserContext);
@@ -14,7 +15,7 @@ const Profile = () => {
     return users.find((user) => id === user.id);
   };
   const { name, img } = getUser();
-  const { posts } = useContext(PostContext);
+  const { posts, deletePost } = useContext(PostContext);
   const { follows } = useContext(FollowContext);
   const myPosts = () => {
     return posts.filter((post) => post.userId === id);
@@ -35,6 +36,12 @@ const Profile = () => {
           following={myFollowing()}
           posts={myPosts()}
         ></ProfileBody>
+        <ProfileBoard
+          posts={myPosts()}
+          name={name}
+          img={img}
+          deletePost={deletePost}
+        ></ProfileBoard>
       </Container>
     </>
   );

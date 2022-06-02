@@ -17,12 +17,7 @@ const ProfileBody = ({
   const modalOpen = () => {
     setIsOpen(true);
   };
-  <ProfileUpdate
-    img={img}
-    name={name}
-    isOpen={isOpen}
-    modalClose={modalClose}
-  ></ProfileUpdate>;
+
   return (
     <>
       <div className="profileBodyBox">
@@ -48,13 +43,19 @@ const ProfileBody = ({
         </div>
       </div>
       <div className="profileBodyButtonBox">
-        <Button block color="light">
+        <Button block color="light" onClick={modalOpen}>
           프로필 편집
         </Button>
         <Button block color="light">
           보관함 보기
         </Button>
       </div>
+      <ProfileUpdate
+        img={img}
+        name={name}
+        isOpen={isOpen}
+        modalClose={modalClose}
+      ></ProfileUpdate>
     </>
   );
 };

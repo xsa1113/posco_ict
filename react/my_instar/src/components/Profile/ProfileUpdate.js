@@ -8,24 +8,24 @@ const ProfileUpdate = ({
   isOpen,
   modalClose,
 }) => {
-  const [form, setFrom] = useState({
+  const [form, setForm] = useState({
     name,
     img,
   });
   const onChangeFile = (e) => {
-    const file = e.target.files(0);
+    const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     return new Promise((resolve) => {
       reader.onload = () => {
-        setFrom({ ...form, img: reader.result });
+        setForm({ ...form, img: reader.result });
         resolve();
       };
     });
   };
   const onChangeName = (e) => {
     const { value } = e.target;
-    setFrom({ ...form, name: value });
+    setForm({ ...form, name: value });
   };
   const { updateUsers } = useContext(UserContext);
   const onSubmit = () => {

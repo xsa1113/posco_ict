@@ -5,4 +5,5 @@ export const Follow = [
   { follower: 0, following: 1 },
   { follower: 0, following: 1 },
   { follower: 2, following: 0 },
+  { follower: 3, following: 0 },
 ];
