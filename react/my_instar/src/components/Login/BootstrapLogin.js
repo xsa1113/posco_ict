@@ -1,13 +1,16 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, Col, Container, Form, Input, Row } from "reactstrap";
 import { UserContext } from "../../store/UserContext";
+import { login } from "../../store/users";
 import AuthRouter from "../AuthRouter";
 import { Users } from "./User";
 
 const BootstrapLogin = () => {
+  // const { isLogin } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
   const [isFail, setIsFail] = useState(false);
-
   const [user, setUser] = useState({
     id: "",
     password: "",
@@ -19,24 +22,34 @@ const BootstrapLogin = () => {
   };
 
   const navigate = useNavigate();
+  // const { users } = useContext(UserContext);
+  // const onSubmitLogin = (e) => {
+  //   e.preventDefault();
+  // console.log([user.id, user.password]);
 
-  const { users } = useContext(UserContext);
-  const onSubmitLogin = (e) => {
+  const onSubmitLogin = async (e) => {
+    // console.log(user);
     e.preventDefault();
-    console.log([user.id, user.password]);
-    const findUser = users.find(
-      (data) => data.userId === user.id && data.password === user.password
-    );
-    if (findUser) {
-      //로그인 후 로직
-      localStorage.setItem("id", findUser.id);
+    const { isLogin } = await dispatch(login(user)).unwrap();
+    // dispatch(login({ user }));
+    if (isLogin) {
       navigate("/");
     } else {
-      //없는 유저 처리
       setIsFail(true);
       setTimeout(() => closeAlert(), 3000);
     }
   };
+  // const findUser = users.find((data) => data.userId === user.id && data.password === user.password);
+  // if (findUser) {
+  //   //로그인 후 로직
+  //   localStorage.setItem("id", findUser.id);
+  //   navigate("/");
+  // } else {
+  //   //없는 유저 처리
+  //   setIsFail(true);
+  //   setTimeout(() => closeAlert(), 3000);
+  // }
+  // };
   const closeAlert = () => {
     setIsFail(false);
   };
@@ -55,18 +68,8 @@ const BootstrapLogin = () => {
                   아이디 또는 비밀번호가 틀렸습니다.
                 </Alert>
               ) : null}
-              <Input
-                type="text"
-                placeholder="ID"
-                name="id"
-                onChange={(e) => onChangeHandler(e)}
-              ></Input>
-              <Input
-                type="password"
-                placeholder="password"
-                name="password"
-                onChange={(e) => onChangeHandler(e)}
-              ></Input>
+              <Input type="text" placeholder="ID" name="id" onChange={(e) => onChangeHandler(e)}></Input>
+              <Input type="password" placeholder="password" name="password" onChange={(e) => onChangeHandler(e)}></Input>
               <Button type={"submit"} color="primary" block>
                 로그인
               </Button>

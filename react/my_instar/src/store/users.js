@@ -1,5 +1,6 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Users } from "../components/Login/User";
-import { checkId, getUserById, getUserByUserId, loginApi, postUser } from "./usersApi";
+import { checkId, getUserById, getUserByUserId, loginApi, logoutApi, postUser } from "./usersApi";
 
 const initialState = {
   users: Users,
@@ -26,15 +27,18 @@ export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI
   if (myId) {
     const me = await getUserById(users, Number(myId));
     return me;
-  } else if (myId == 0 || myId === "0") {
+  } else if (myId === 0 || myId === "0") {
     const me = await getUserById(users, Number(myId));
     return me;
   }
   return;
 });
 export const login = createAsyncThunk(LOGIN, async (user, thunkAPI) => {
+  //   console.log(user);
   const { users } = thunkAPI.getState().users;
+  console.log(users);
   const isLogin = await loginApi(users, user);
+  console.log(isLogin);
   return isLogin;
 });
 export const insertUser = createAsyncThunk(INSERT_USER, async (user, thunkAPI) => {
@@ -52,6 +56,12 @@ export const selectUserByUserId = createAsyncThunk(SELECT_USER_BY_USERID, async 
   const { users } = thunkAPI.getState().users;
   const newUser = await getUserByUserId(users, userId);
   return newUser;
+});
+
+export const logout = createAsyncThunk(LOGOUT, async (payload, thunkAPI) => {
+  const { myId } = thunkAPI.getState().users;
+  const isLogout = await logoutApi(myId);
+  return isLogout;
 });
 
 export const usersSlice = createSlice({
@@ -77,6 +87,10 @@ export const usersSlice = createSlice({
       })
       .addCase(insertUser.fulfilled, (state, { payload }) => {
         return { ...state, users: payload };
+      })
+      .addCase(logout.fulfilled, (state, { payload }) => {
+        localStorage.removeItem("id");
+        return { ...state, isLogin: false, me: {}, myId: "" };
       });
   },
 });

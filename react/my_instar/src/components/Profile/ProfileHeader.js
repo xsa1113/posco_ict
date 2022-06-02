@@ -1,15 +1,29 @@
 import "./ProfileHeader.css";
 import { GoDiffAdded } from "react-icons/go";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../store/users";
+import { Button } from "reactstrap";
 const ProfileHeader = ({ name }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onClickLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
   return (
     <div className="ProfileHeaderBox">
       <div>
         <h2>{name}</h2>
       </div>
       <div>
-        <AiOutlineMenu size={30}></AiOutlineMenu>
-        <GoDiffAdded size={30}></GoDiffAdded>
+        <Button outline>
+          <GoDiffAdded size={30}></GoDiffAdded>
+        </Button>
+        <Button outline onClick={onClickLogout}>
+          <AiOutlineMenu size={30}></AiOutlineMenu>
+        </Button>
       </div>
     </div>
   );

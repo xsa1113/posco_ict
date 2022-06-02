@@ -14,7 +14,7 @@ const Join = () => {
     name: "",
   });
   const navigate = useNavigate();
-  const { insertUsers, users } = useContext(UserContext);
+  // const { insertUsers, users } = useContext(UserContext);
 
   const onSubmitLogin = (e) => {
     e.preventDefault();
@@ -61,10 +61,7 @@ const Join = () => {
       <Container className="bg-light border">
         <Row style={{ rowGap: "1em", padding: "3em" }}>
           <Col xl={12}>
-            <img
-              src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"
-              alt="Logo"
-            ></img>
+            <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Logo"></img>
           </Col>
           <Col xl={12}>
             <Form onSubmit={onSubmitLogin} className="JoinForm">
@@ -73,24 +70,9 @@ const Join = () => {
                   {text}
                 </Alert>
               ) : null}
-              <Input
-                type="text"
-                placeholder="ID"
-                name="id"
-                onChange={(e) => onChangeHandler(e)}
-              ></Input>
-              <Input
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={(e) => onChangeHandler(e)}
-              ></Input>
-              <Input
-                type="text"
-                placeholder="name"
-                name="name"
-                onChange={(e) => onChangeHandler(e)}
-              ></Input>
+              <Input type="text" placeholder="ID" name="id" onChange={(e) => onChangeHandler(e)}></Input>
+              <Input type="password" placeholder="Password" name="password" onChange={(e) => onChangeHandler(e)}></Input>
+              <Input type="text" placeholder="name" name="name" onChange={(e) => onChangeHandler(e)}></Input>
               <Button type={"submit"} color="primary" block>
                 가입
               </Button>
