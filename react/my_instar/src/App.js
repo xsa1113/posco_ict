@@ -14,6 +14,8 @@ import { Post } from "./data/Post";
 import { PostContext } from "./store/PostContext";
 import { FollowContext } from "./store/FollowContext";
 import Search from "./components/Search/Search";
+import { useDispatch } from "react-redux";
+import { selectMyPost } from "./store/posts";
 
 function App() {
   const [users, setUsers] = useState(Users);
@@ -58,25 +60,19 @@ function App() {
   };
 
   return (
-    <UserContext.Provider value={{ users, insertUsers, updateUsers }}>
-      <PostContext.Provider value={{ posts, insertPost, deletePost }}>
-        <FollowContext.Provider value={{ follows, insertFollow }}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Layout></Layout>}>
-                <Route index path="/" element={<Main></Main>}></Route>
-                <Route path="search" element={<Search></Search>}></Route>
-                <Route path="shopping" element={<Main></Main>}></Route>
-                <Route path="profile" element={<Profile></Profile>}></Route>
-              </Route>
-              <Route path="/login" element={<BootstrapLogin></BootstrapLogin>}></Route>
-              <Route path="/join" element={<Join></Join>}></Route>
-              <Route path="/*" element={<Page404></Page404>}></Route>
-            </Routes>
-          </BrowserRouter>
-        </FollowContext.Provider>
-      </PostContext.Provider>
-    </UserContext.Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout></Layout>}>
+          <Route index element={<Main></Main>}></Route>
+          <Route path="search" element={<Search></Search>}></Route>
+          <Route path="shopping" element={<Main></Main>}></Route>
+          <Route path="profile" element={<Profile></Profile>}></Route>
+        </Route>
+        <Route path="/login" element={<BootstrapLogin></BootstrapLogin>}></Route>
+        <Route path="/join" element={<Join></Join>}></Route>
+        <Route path="/*" element={<Page404></Page404>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

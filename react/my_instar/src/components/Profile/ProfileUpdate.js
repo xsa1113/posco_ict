@@ -1,17 +1,15 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Input, InputGroup, InputGroupText, Modal } from "reactstrap";
 import { UserContext } from "../../store/UserContext";
+import { updateUsers } from "../../store/users";
 import "./ProfileUpdate.css";
-const ProfileUpdate = ({
-  img = "/img/profile/11.png",
-  name = "park",
-  isOpen,
-  modalClose,
-}) => {
+const ProfileUpdate = ({ img = "/img/profile/11.png", name = "park", isOpen, modalClose }) => {
   const [form, setForm] = useState({
     name,
     img,
   });
+  const dispatch = useDispatch();
   const onChangeFile = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -27,22 +25,16 @@ const ProfileUpdate = ({
     const { value } = e.target;
     setForm({ ...form, name: value });
   };
-  const { updateUsers } = useContext(UserContext);
+  // const { updateUsers } = useContext(UserContext);
   const onSubmit = () => {
-    updateUsers(form);
+    // updateUsers(form);
+    dispatch(updateUsers(form));
     modalClose();
   };
   return (
     <Modal fullscreen isOpen={isOpen}>
-      <ProfileUpdateHeader
-        modalClose={modalClose}
-        onSubmit={onSubmit}
-      ></ProfileUpdateHeader>
-      <ProfileUpdateBody
-        onChangeName={onChangeName}
-        onChangeFile={onChangeFile}
-        form={form}
-      ></ProfileUpdateBody>
+      <ProfileUpdateHeader modalClose={modalClose} onSubmit={onSubmit}></ProfileUpdateHeader>
+      <ProfileUpdateBody onChangeName={onChangeName} onChangeFile={onChangeFile} form={form}></ProfileUpdateBody>
     </Modal>
   );
 };
@@ -66,13 +58,7 @@ const ProfileUpdateHeader = ({ modalClose, onSubmit }) => {
 const ProfileUpdateBody = ({ onChangeFile, onChangeName, form }) => {
   return (
     <div className="profileUpdateForm">
-      <Input
-        type="file"
-        hidden
-        accept="image/*"
-        id="imgUpload"
-        onChange={(e) => onChangeFile(e)}
-      ></Input>
+      <Input type="file" hidden accept="image/*" id="imgUpload" onChange={(e) => onChangeFile(e)}></Input>
       <label htmlFor="imgUpload">
         <div className="profileImgBox">
           <img className="profileImg" src={form.img} alt="myProfileImg"></img>
@@ -81,11 +67,7 @@ const ProfileUpdateBody = ({ onChangeFile, onChangeName, form }) => {
 
       <InputGroup>
         <InputGroupText>이름</InputGroupText>
-        <Input
-          type="text"
-          value={form.name}
-          onChange={(e) => onChangeName(e)}
-        ></Input>
+        <Input type="text" value={form.name} onChange={(e) => onChangeName(e)}></Input>
       </InputGroup>
     </div>
   );

@@ -25,3 +25,20 @@ export const checkId = async (users, userId) => {
 export const logoutApi = async (userId) => {
   return true;
 };
+
+export const getUserByKey = async (users, key) => {
+  const findUserByUserId = await users.find((user) => key.test(user.name));
+  return findUserByUserId;
+};
+
+export const putUsers = async (users, user, id) => {
+  const findUsresIndex = await users.findIndex((user) => user.id === id);
+  const { name, img } = user;
+  if (findUsresIndex === -1) {
+    console.error("not found");
+    return;
+  }
+  const newUsers = [...users];
+  newUsers.splice(findUsresIndex, 1, { ...users[findUsresIndex], name, img });
+  return newUsers;
+};
