@@ -21,6 +21,11 @@ const initialState = {
     loading: false,
     message: "",
   },
+  mainPosts: {
+    posts: [],
+    loading: false,
+    message: "",
+  },
 };
 
 const SELECT_MY_POST = "SELECT_MY_POST";
