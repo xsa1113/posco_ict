@@ -1,3 +1,4 @@
+import { customAxios } from "../http/CustomAxios"
 export const getPostById = async (posts, id) => {
     try {
         const findPostById = await posts.filter((post) => post.id === id);
@@ -12,6 +13,16 @@ export const getPostByUserId = async (posts, userId) => {
         const findPostsByUserId = await posts.filter((post) => post.userId === userId);
 
         return findPostsByUserId;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getMyPost = async (posts, userId) => {
+    try {
+        // const findPostsByUserId = await posts.filter((post) => post.userId === userId);
+
+        return await customAxios("/post/my", "get");
     } catch (error) {
         throw error;
     }

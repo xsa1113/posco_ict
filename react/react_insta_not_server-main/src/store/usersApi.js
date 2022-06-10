@@ -1,6 +1,27 @@
+import axios from "axios";
+import { customAxios } from "../http/CustomAxios"
+
+export const loginCheckApi = async (users, id) => {
+    // const findUserById = await users.find((user) => user.id === id);
+    const response = await axios({
+        url:"http://localhost:8000/user/check",
+        method:"get",
+        headers:{
+            Authorization:`Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    return await customAxios("/user/check","get");
+};
 export const getUserById = async (users, id) => {
-    const findUserById = await users.find((user) => user.id === id);
-    return findUserById;
+    // const findUserById = await users.find((user) => user.id === id);
+    // const response = await axios({
+    //     url:`http://localhost:8000/user/${id}`,
+    //     method:"get",
+    //     headers:{
+    //         Authorization:`Bearer ${localStorage.getItem('token')}`
+    //     }
+    // })
+    return await customAxios(`/user/${id}`, 'get');
 };
 
 export const getUserByUserId = async (users, userId) => {
@@ -14,12 +35,20 @@ export const getUserByKey = async (users, key) => {
 
 export const postUser = async (users, user) => {
     const newUser = { ...user, userId: user.id, id: users.length };
-    return [...users, newUser];
+    
+    return await customAxios('/user/' , 'post', newUser);
 };
 
 export const loginApi = async (users, user) => {
-    const checkUser = await users.find((data) => data.userId === user.id && data.password === user.password);
-    return { isLogin: checkUser ? true : false, user: checkUser };
+    // const checkUser = await users.find((data) => data.userId === user.id && data.password === user.password);
+    const newUser = {...user, userId: user.id, id: null}
+    const response = await axios({
+        method:"post",
+        data:newUser,
+        url:"http://localhost:8000/user/login"
+    });
+    console.log(response.data.token);
+    return { isLogin: response.data.token ? true : false, user: response.data };
 };
 
 export const checkId = async (users, userId) => {

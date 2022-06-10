@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Users } from "../data/User";
-import { checkId, getUserById, getUserByKey, getUserByUserId, loginApi, logoutApi, postUser, putUsers } from "./usersApi";
+import { checkId, getUserById, getUserByKey, getUserByUserId, loginApi, logoutApi, postUser, putUsers, loginCheckApi } from "./usersApi";
 const initialState = {
     users: Users,
-    myId: localStorage.getItem("id"),
-    isLogin: localStorage.getItem("id") === undefined ? true : false,
+    myId: localStorage.getItem("token"),
+    isLogin: localStorage.getItem("token") === undefined ? true : false,
     me: {},
 };
 
@@ -25,10 +25,10 @@ export const getCheckId = createAsyncThunk(CHECK_ID, async (userId, thunkAPI) =>
 export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI) => {
     const { users, myId } = thunkAPI.getState().users;
     if (myId) {
-        const me = await getUserById(users, Number(myId));
+        const me = await loginCheckApi(users, Number(myId));
         return me;
     } else if (myId === 0 || myId === "0") {
-        const me = await getUserById(users, Number(myId));
+        const me = await loginCheckApi(users, Number(myId));
         return me;
     }
     return;
@@ -88,8 +88,8 @@ export const usersSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, { payload }) => {
                 if (payload.isLogin) {
-                    localStorage.setItem("id", payload.user.id);
-                    return { ...state, isLogin: payload.login, me: payload.user, myId: payload.user.id };
+                    localStorage.setItem("token", payload.user.token);
+                    return { ...state, isLogin: payload.login, me: payload.user};
                 } else {
                     return { ...state, isLogin: false };
                 }
@@ -98,7 +98,7 @@ export const usersSlice = createSlice({
                 return { ...state, users: payload };
             })
             .addCase(logout.fulfilled, (state, { payload }) => {
-                localStorage.removeItem("id");
+                localStorage.removeItem("token");
                 return { ...state, isLogin: false, me: {}, myId: "" };
             })
             .addCase(updateUsers.fulfilled, (state, { payload }) => {
