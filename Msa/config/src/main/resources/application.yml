@@ -1,0 +1,13 @@
+
+server:
+  port: 7000
+
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xsa1113/posco_config.git

@@ -16,6 +16,18 @@ spring:
     name: gateway-service
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTION
+            allowedOrigins:
+              - "http://localhost:3000"
+            allowedHeaders: "*"
       default-filters:
         - name: GlobalFilter
           args:
@@ -41,3 +53,51 @@ spring:
             - Path= /client2/**
           filters:
             - CustomFilter
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+              - Path= /user/**
+          filters:
+              - CustomFilter
+
+        - id: post-service
+          uri: lb://POST-SERVICE
+          predicates:
+              - Path= /post/**
+          filters:
+              - CustomFilter
+              - AuthFilter
+
+        - id: follow-service
+          uri: lb://FOLLOW-SERVICE
+          predicates:
+            - Path= /follow/**
+          filters:
+            - CustomFilter
+            - AuthFilter
+
+        - id: upload-service
+          uri: lb://UPLOAD-SERVICE
+          predicates:
+              - Path= /upload/**
+              - Method=POST
+          filters:
+              - CustomFilter
+              - AuthFilter
+
+        - id: upload-service
+          uri: lb://UPLOAD-SERVICE
+          predicates:
+              - Path= /img/**
+              - Method=GET
+          filters:
+              - CustomFilter
+              - AuthFilter
+#                rewirtepath 다시 패스를 지정해준다 ex) upload/img 라고 쏠때 -> 다시 img로 변경해주기위해서 쓴다?
+              - RewritePath=/img/(?<segment>.*),/$\{segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace

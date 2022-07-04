@@ -1,6 +1,7 @@
 package com.example.client1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 public class TestController {
 
     Environment env;
-
     @Autowired
     public TestController(Environment env){
         this.env = env;
     }
+
+    @Value("${posco.name}")
+    String name;
+
+    @Value("${jwt.ret}")
+    String ret;
+
+    @Value("${posco.datasource.url}")
+    String url;
 
     @GetMapping
     public String test(HttpServletRequest request){
@@ -27,7 +36,7 @@ public class TestController {
 
     @GetMapping("/hello")
     public String hello(){
-        return "hello";
+        return  name + "hello" + ret + " " + url;
     }
 
     @GetMapping("/id/{id}")
